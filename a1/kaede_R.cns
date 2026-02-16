@@ -1,0 +1,3239 @@
+;---------------------------------------------------------------------------
+; 吹っ飛びくらい
+[Statedef 84000]
+type    = A
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+poweradd = 0
+sprpriority = 0
+
+[State 200, 1]
+type = lifeset
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = hitby
+trigger1 = 1
+value = SCA,AA,AT,AP
+
+[State 200, 1]
+type = changeanim
+trigger1 = time = 0
+value = 5030
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = -2.5
+y = -8.5
+
+[State 200, 1]
+type = veladd
+trigger1 = time >= 0
+y = 0.47
+
+[State 200, 1]
+type = changeanim
+trigger1 = vel Y > 0
+trigger1 = anim != 5050
+value = 5050
+
+[State 52, 4]
+type = selfstate
+trigger1 = vel Y > 0
+trigger1 = pos Y >= 0
+value = 5100
+;---------------------------------------------------------------------------
+; 九頭龍 上段
+[Statedef 4000]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4000
+poweradd = 0
+sprpriority = 2
+
+[State 3000, Width]
+type = playsnd
+trigger1 = AnimElem = 1
+value = 5,0
+volume = 100
+
+[State 3000, Width]
+type = varset
+trigger1 = time = 0
+var(24) = 0
+
+[State 3000, Width]
+type = poweradd
+trigger1 = time = 0
+value = -1000
+
+[State 52, 2]
+type = explod
+trigger1 = time = 0
+anim = 11012
+ontop = 1
+ownpal = 1
+pausemovetime = 123456789
+supermovetime = 123456789
+pos = -18,-62
+[State 200, 1]
+type = AssertSpecial
+trigger1 = time = [10,49]
+flag = noFG
+
+[State 52, 2]
+type = allpalfx
+trigger1 = animelemtime(6) = -1
+trigger2 = animelemtime(6) = 33
+add = -256,-256,-256
+time = 1
+[State 52, 2]
+type = allpalfx
+trigger1 = animelemtime(6) = 0
+trigger2 = animelemtime(6) = 34
+add = 256,256,256
+time = 1
+[State 52, 2]
+type = BGpalfx
+trigger1 = animelemtime(6) = 1
+trigger2 = animelemtime(6) = 35
+add = -256,-256,-256
+time = 1
+
+[State 52, 2]
+type = explod
+trigger1 = animelemtime(6) = 3
+trigger1 = numexplod(4000) = 0
+anim = 11011
+id = 4000
+sprpriority = -1
+ownpal = 1
+removetime = 30
+bindtime = -1
+removeongethit = 1
+pausemovetime = 123456789
+supermovetime = 123456789
+postype = left
+[State 52, 2]
+type = removeexplod
+trigger1 = time = 50
+id = 4000
+[State 3000, Width]
+type = pause
+trigger1 = animelemtime(6) = 0
+time = 35
+movetime = 35
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 26, 6
+volume = 255
+channel = 0
+
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 4002
+
+;---------------------------------------------------------------------------
+; 九頭龍 下段
+[Statedef 4001]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4000
+poweradd = 0
+sprpriority = 2
+
+[State 3000, Width]
+type = playsnd
+trigger1 = AnimElem = 1
+value = 5,0
+volume = 100
+
+[State 3000, Width]
+type = varset
+trigger1 = time = 0
+var(24) = 1
+
+[State 3000, Width]
+type = poweradd
+trigger1 = time = 0
+value = -1000
+
+[State 52, 2]
+type = explod
+trigger1 = time = 0
+anim = 11012
+ontop = 1
+ownpal = 1
+pausemovetime = 123456789
+supermovetime = 123456789
+pos = -18,-62
+[State 200, 1]
+type = AssertSpecial
+trigger1 = time = [10,49]
+flag = noFG
+
+[State 52, 2]
+type = allpalfx
+trigger1 = animelemtime(6) = -1
+trigger2 = animelemtime(6) = 33
+add = -256,-256,-256
+time = 1
+[State 52, 2]
+type = allpalfx
+trigger1 = animelemtime(6) = 0
+trigger2 = animelemtime(6) = 34
+add = 256,256,256
+time = 1
+[State 52, 2]
+type = BGpalfx
+trigger1 = animelemtime(6) = 1
+trigger2 = animelemtime(6) = 35
+add = -256,-256,-256
+time = 1
+
+[State 52, 2]
+type = explod
+trigger1 = animelemtime(6) = 3
+trigger1 = numexplod(4000) = 0
+anim = 11011
+id = 4000
+sprpriority = -1
+ownpal = 1
+removetime = 30
+bindtime = -1
+removeongethit = 1
+pausemovetime = 123456789
+supermovetime = 123456789
+postype = left
+[State 52, 2]
+type = removeexplod
+trigger1 = time = 50
+id = 4000
+[State 3000, Width]
+type = pause
+trigger1 = animelemtime(6) = 0
+time = 35
+movetime = 35
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 26, 6
+volume = 255
+channel = 0
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 4002
+
+;---------------------------------------------------------------------------
+; 九頭龍 移動
+[Statedef 4002]
+type    = S
+movetype= A
+physics = N
+juggle = 0
+velset = 0,0
+anim = 4001
+ctrl = 0
+sprpriority = 2
+
+[State 200, 1]
+type = statetypeset
+triggerall = teammode = single || teammode = turns
+trigger1 = enemy,gethitvar(fall) = 0 && p2statetype = A && p2movetype = H && (p2stateno != [120,159]) 
+trigger2 = p2stateno = 5040
+movetype = I
+[State 200, 1]
+type = statetypeset
+trigger1 = teammode = single || teammode = turns
+trigger1 = p2statetype != A || p2movetype != H 
+trigger1 = p2stateno != 5040
+movetype = A
+
+[State 50, 残像]
+type = AfterImage
+trigger1 = time = 0
+palbright = 30,0,255 
+palcolor = 0
+palcontrast = 1,1,255
+paladd = 255,255,255
+palmul = 1,1,255
+trans = none
+timegap = 4
+framegap = 1
+length = 2
+time = -1
+
+[State 52, 2]
+type = playsnd
+trigger1 = Time = 0
+value = 100,0
+volume = 100
+loop = -1
+channel = 2
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = 8
+
+[State 100, 1]
+type = playerpush
+trigger1 = 1
+value = 0
+
+[State 52, 2]
+type = explod
+trigger1 = numexplod(100) = 0
+anim = 10106
+id = 100
+vel = -1,0
+sprpriority = 2
+ownpal = 1
+pos = -20,5
+
+[State 3000, 5]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = Hard
+id = 4000
+damage = 0,0
+kill = 0
+numhits = 0
+getpower  = 0,0
+givepower = 0,0
+priority  = 7
+guardflag = M
+pausetime = 1,1
+guard.sparkno = -1
+sparkno = -1
+ground.guardtime = 12
+ground.hittime = 20
+air.hittime = 20
+hitsound   = -1
+guardsound = -1
+guard.hittime = 15
+p2facing = 1
+
+[State 3000, 7]
+type = targetState
+trigger1 = movehit
+value = 4100
+id = 4000
+ignorehitpause=1
+[State 3000, 7]
+type = ChangeState
+trigger1 = movecontact
+trigger2 = time > 30
+value = 4005+var(24)
+id = 4000
+ignorehitpause=1
+
+;---------------------------------------------------------------------------
+; くらい
+[Statedef 4100]
+type    = S
+movetype= H
+physics = N
+juggle  = 0
+ctrl = 0
+velset = 0,0
+poweradd = 0
+sprpriority = 0
+
+[State 200, 1]
+type = HitFallSet
+trigger1 = time = 0
+value = 0
+
+[State 200, 1]
+type = posset
+trigger1 = time = 0
+y = 0
+[State 200, 1]
+type = velset
+trigger1 = time = 1
+y = 0
+x = 0
+
+[State 200, 1]
+type = changeanim2
+trigger1 = time = 0
+value = 4100
+
+[State 200, 1]
+type = selfstate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; たたきつけダウン
+[Statedef 4101]
+type    = A
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+poweradd = 0
+sprpriority = 0
+
+[State 200, 1]
+type = changeanim2
+trigger1 = time <= 10
+value = 253
+elem = 2
+[State 200, 1]
+type = changeanim2
+trigger1 = time = 11
+value = 253
+elem = 3
+
+[State 5100, shake]
+type = EnvShake
+trigger1 = time = 0
+time = 5
+freq = 120
+ampl = 6
+phase = -1
+
+[State 200, 1]
+type = velset
+trigger1 = time = 11
+x = -7
+y = 22
+[State 200, 1]
+type = posadd
+trigger1 = time <= 10
+trigger1 = (time%2) = 0
+x = -1
+[State 200, 1]
+type = posadd
+trigger1 = time <= 10
+trigger1 = (time%2) = 1
+x = 1
+
+[State 200, 7]
+type = changestate
+trigger1 = pos Y >= 0
+trigger1 = vel Y > 0
+value = 4102
+
+;---------------------------------------------------------------------------
+; 3Cダウン
+[Statedef 4102]
+type    = L
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+poweradd = 0
+sprpriority = 0
+
+[State 200, 1]
+type = changeanim2
+trigger1 = time = 0
+value = 413
+
+[State 200, 1]
+type = changeanim
+trigger1 = SelfAnimExist(5100)
+trigger1 = SelfAnimExist(5110)
+trigger1 = SelfAnimExist(5170)
+trigger1 = time < 8
+value = 5100
+[State 200, 1]
+type = changeanim
+trigger1 = SelfAnimExist(5100)
+trigger1 = SelfAnimExist(5110)
+trigger1 = SelfAnimExist(5170)
+trigger1 = time = 8
+value = 5170
+[State 200, 1]
+type = changeanim
+trigger1 = SelfAnimExist(5100)
+trigger1 = SelfAnimExist(5110)
+trigger1 = SelfAnimExist(5170)
+trigger1 = anim = 5170 || anim = 5160
+trigger1 = animtime = 0
+value = 5110
+
+[State 5100, shake]
+type = EnvShake
+trigger1 = time = 0
+time = 8
+freq = 120
+ampl = 6
+phase = -1
+
+[State 200, 1]
+type = velset
+trigger1 = time = 8
+x = -1
+y = -6
+[State 200, 1]
+type = veladd
+trigger1 = time = [8,16]
+y = 0.85
+[State 200, 1]
+type = velset
+trigger1 = time = 20
+x = 0
+y = 0
+[State 200, 1]
+type = posset
+trigger1 = time = 0
+trigger2 = time = 20
+y = 0
+
+[State 200, 7]
+type = selfState
+trigger1 = life = 0
+trigger1 = time >= 20
+value = 5110
+[State 200, 7]
+type = selfState
+trigger1 = time = 40
+value = 5120
+
+;---------------------------------------------------------------------------
+; 上段
+[Statedef 4005]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4002
+poweradd = 0
+sprpriority = 2
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = time = 0
+pos = 20, 0
+
+[State 200, 1]
+type = statetypeset
+triggerall = teammode = single || teammode = turns
+trigger1 = enemy,gethitvar(fall) = 0 && p2statetype = A && p2movetype = H && (p2stateno != [120,159]) 
+trigger2 = p2stateno = 5040
+movetype = I
+[State 200, 1]
+type = statetypeset
+trigger1 = teammode = single || teammode = turns
+trigger1 = p2statetype != A || p2movetype != H 
+trigger1 = p2stateno != 5040
+movetype = A
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 4
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 10
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(6) >= 0
+trigger1 = animelemtime(14) < 0
+anim = 2080+animelemno(0)-5
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 9
+attr = A, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(19.0*fvar(14)),ceil(ceil(19.0*fvar(16))*3.92)
+guardflag = H
+id = 4000
+kill = 0
+hitflag = MA
+pausetime = 14,14
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10014
+guard.sparkno = s10003
+hitsound   = s1,0+random%3
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -8.2
+ground.velocity = -8.2
+air.velocity = -2,-2.5
+
+[State 3000, 7]
+type = targetState
+trigger1 = anim = 4002
+trigger1 = movehit = 1
+trigger1 = p2statetype = A && p2stateno != 84000
+value = 4100
+id = 4000
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 4
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 5100, shake]
+type = EnvShake
+trigger1 = movehit = 1
+time = 5
+freq = 80
+ampl = 5
+ignorehitpause=1
+persistent = 0
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "a"
+trigger2 = var(59) > 0 && time > 0
+value = 4010
+ignorehitpause=1
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 下段
+[Statedef 4006]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4003
+poweradd = 0
+sprpriority = 2
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = time = 0
+pos = 20, 0
+
+[State 200, 1]
+type = statetypeset
+triggerall = teammode = single || teammode = turns
+trigger1 = enemy,gethitvar(fall) = 0 && p2statetype = A && p2movetype = H && (p2stateno != [120,159]) 
+trigger2 = p2stateno = 5040
+movetype = I
+[State 200, 1]
+type = statetypeset
+trigger1 = teammode = single || teammode = turns
+trigger1 = p2statetype != A || p2movetype != H 
+trigger1 = p2stateno != 5040
+movetype = A
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 4
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = C, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(19.0*fvar(14)),ceil(ceil(19.0*fvar(16))*3.92)
+guardflag = L
+hitflag = MA
+kill = 0
+id = 4000
+pausetime = 14,14
+guard.pausetime = 10,10
+sparkxy = -20,-10
+sparkno = s10000
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -8.2
+ground.velocity = -8.2
+air.velocity = -2,-2.5
+
+[State 3000, 7]
+type = targetState
+trigger1 = anim = 4003
+trigger1 = movehit = 1
+trigger1 = p2statetype = A && p2stateno != 84000
+value = 4100
+id = 4000
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 1
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "a"
+trigger2 = var(59) > 0 && time > 0
+value = 4010
+ignorehitpause=1
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; A
+[Statedef 4010]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4010
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = varadd
+trigger1 = animelemtime(4) < 0
+trigger1 = movehit
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 4
+movetype = I
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 3
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(9.0*fvar(14)),ceil(ceil(9.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10000
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 1
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "b"
+trigger2 = var(59) > 0 && time > 0
+value = 4011
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; AB
+[Statedef 4011]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4011
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(10) < 0
+anim = 2000+animelemno(0)
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(9.0*fvar(14)),ceil(ceil(9.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10017
+guard.sparkno = s10003
+hitsound   = s1,0+random%3
+guardsound = s3,2+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "x"
+trigger2 = var(59) > 0 && time > 0
+value = 4012
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABC
+[Statedef 4012]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4012
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 7
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(10) < 0
+anim = 2010+animelemno(0)
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(9.0*fvar(14)),ceil(ceil(9.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-50
+sparkno = s10015
+guard.sparkno = s10003
+hitsound   = s1,0+random%3
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "2x"
+value = 4030
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "a"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4013
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABCA
+[Statedef 4013]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4013
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(11.0*fvar(14)),ceil(ceil(11.0*fvar(16))*3.92)
+guardflag = H
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-70
+sparkno = s10017
+guard.sparkno = s10003
+hitsound   = s1,3+random%7
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "b"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4014
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABCAB
+[Statedef 4014]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4014
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(11.0*fvar(14)),ceil(ceil(11.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-10
+sparkno = s10000
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 2
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "x"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4015
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABCABC
+[Statedef 4015]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4015
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 6
+movetype = I
+
+[State 5100, shake]
+type = width
+trigger1 = animelemtime(5) >= 0
+player = 20,12
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(11.0*fvar(14)),ceil(ceil(11.0*fvar(16))*3.92)
+kill = 0
+guardflag = M
+hitflag = MA
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-60
+sparkno = s10001
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 0, 2
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 3
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 200, 7];下段派生
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "x"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4020
+[State 200, 7];通常派生
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "a"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random > Var(59) * 150
+value = 4016
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABCABCA
+[Statedef 4016]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4016
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 8
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(10) < 0
+anim = 2020+animelemno(0)
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 6
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(16.0*fvar(14)),ceil(ceil(16.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-70
+sparkno = s10024
+guard.sparkno = s10003
+hitsound   = s1,3+random%7
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "b"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4017
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;ABCABCAB
+[Statedef 4017]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4017
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 8
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(10) < 0
+anim = 2030+animelemno(0)
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 1]
+type = width
+trigger1 = animelemtime(5) >= 0
+player = 25,25
+ignorehitpause=1
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 6
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(16.0*fvar(14)),ceil(ceil(16.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-50
+sparkno = s10019
+guard.sparkno = s10003
+hitsound   = s1,3+random%7
+guardsound = s3,2+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 3
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "236x"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4018
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 通常フィニッシュ
+[Statedef 4018]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 3,0
+ctrl = 0
+anim = 4018
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = width
+trigger1 = animelemtime(5) >= 0
+trigger1 = animelemtime(8) < 0
+player = 20,12
+ignorehitpause=1
+
+[State 52, 2]
+type = explod
+trigger1 = animelem = 5
+anim = 10103
+sprpriority = 2
+ownpal = 1
+pos = 0,5
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+statetype = A
+ignorehitpause=1
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 19
+statetype = S
+ignorehitpause=1
+[State 200, 1]
+type = velset
+trigger1 = animelem = 5
+x = 2
+y = -12
+[State 200, 1]
+type = velset
+trigger1 = animelem = 14
+x = 2.5
+y = -9
+[State 200, 1]
+type = veladd
+trigger1 = animelemtime(5) >= 0
+trigger1 = animelemtime(19) < 0
+y = 0.55
+[State 200, 1]
+type = velset
+trigger1 = animelemtime(19) = 2
+y = 30
+x = 3.5
+[State 200, 1]
+type = velset
+trigger1 = animelem = 21
+y = 0
+x = 0
+[State 200, 1]
+type = posset
+trigger1 = animelem = 21
+y = 0
+
+[State 0, 1]
+type = explod
+trigger1 = animelem = 21
+anim = 10103
+sprpriority = 2
+ownpal = 1
+pos = 35,5
+[State 0, 1]
+type = explod
+trigger1 = animelem = 21
+anim = 10104
+sprpriority = 2
+vel = 0,0
+ownpal = 1
+pos = -35,5
+
+[State 181, 1]
+type = explod
+trigger1 = animelemtime(4) = 0
+anim = 1130
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = animelemtime(5) >= 0
+trigger1 = animelemtime(6) < 0
+anim = 1133
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = animelemtime(6) >= 0
+trigger1 = animelemtime(7) < 0
+anim = 1134
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = animelem = 8
+anim = 1080
+sprpriority = 3
+pos = 35,-48
+ownpal = 1
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = animelem = 5
+anim = 1140
+sprpriority = 3
+pos = 70,15
+ownpal = 1
+ignorehitpause=1
+
+[State 200, 1]
+type = varadd
+trigger1 = animelemtime(5) >= 0
+trigger1 = animelemtime(7) < 0
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+[State 200, 1]
+type = varadd
+trigger1 = animelemtime(10) >= 0
+trigger1 = animelemtime(11) < 0
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+[State 200, 1]
+type = varadd
+trigger1 = animelemtime(19) >= 0
+trigger1 = animelemtime(20) < 0
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 1]
+type = BGpalfx
+trigger1 = animelemtime(5) >= 0
+trigger1 = animelemtime(7) < 0
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+[State 200, 1]
+type = BGpalfx
+trigger1 = animelemtime(10) >= 0
+trigger1 = animelemtime(11) < 0
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+[State 200, 1]
+type = BGpalfx
+trigger1 = animelemtime(19) >= 0
+trigger1 = animelemtime(20) < 0
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 1000, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 26,7
+volume = 255
+channel = 0
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, SA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(11.0*fvar(14)),ceil(ceil(11.0*fvar(16))*3.92)
+guardflag = MA
+id = 1090
+kill = 0
+hitflag = MAF
+pausetime = 5,5
+guard.pausetime = 5,5
+sparkxy = -10,-60
+sparkno = s10028
+guard.sparkno = s10003
+hitsound   = s1000,2
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 60
+guard.hittime  = 8
+guard.velocity = -4.5
+ground.velocity = -1.5,-14
+air.hittime  = 40
+air.velocity = -1.5,-14
+yaccel = 0.5
+fall.recovertime = 60
+fall = 1
+palfx.time = 60
+palfx.sinadd = 255,255,255,3
+palfx.add = 0,0,0
+palfx.color = 0
+palfx.invertall = 1
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 10
+attr = A, SA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(11.0*fvar(14)),ceil(ceil(11.0*fvar(16))*3.92)
+guardflag = MA
+id = 1090
+kill = 0
+hitflag = MAF
+pausetime = 5,5
+guard.pausetime = 5,5
+sparkxy = -10,-60
+sparkno = s10028
+guard.sparkno = s10003
+hitsound   = s1,3+random%7
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 40
+guard.hittime  = 8
+guard.velocity = -4.5
+ground.velocity = -2,-14
+air.hittime  = 50
+air.velocity = -2,-14
+yaccel = 0.5
+fall.recovertime = 50
+fall = 1
+palfx.time = 60
+palfx.sinadd = 255,255,255,3
+palfx.add = 0,0,0
+palfx.color = 0
+palfx.invertall = 1
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 19
+attr = A, SA
+getpower = 0,0
+givepower = 15,15
+animtype  = up
+damage    = floor(ifelse(var(50)=1,14.0,26.0)*fvar(14)),ceil(ceil(ifelse(var(50)=1,14.0,26.0)*fvar(16))*3.92)
+guardflag = H
+id = 4018
+hitflag = MAF
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-140
+sparkno = s10029
+guard.sparkno = s10003
+hitsound   = s5,1
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 40
+guard.hittime  = 8
+guard.velocity = -4.5
+ground.velocity = -6,-14
+air.hittime  = 50
+air.velocity = -6,-14
+yaccel = 0.5
+fall.recover = 0
+fall = 1
+palfx.time = 1
+palfx.sinadd = 255,255,255,3
+palfx.add = 0,0,0
+palfx.color = 0
+palfx.invertall = 1
+
+[State 200, 7]
+type = targetState
+trigger1 = animelemtime(19) >= 0
+trigger1 = movehit = 1
+value = 4101
+id = 4018
+ignorehitpause=1
+persistent = 0
+
+[State 181, 1]
+type = explod
+trigger1 = movehit = 1
+trigger1 = numexplod(1090) = 0
+id = 1090
+anim = 1090
+sprpriority = 3
+postype = p2
+pos = 0,target,Const(size.mid.pos.y)
+ownpal = 1
+bindtime = -1
+removetime = -1
+ignorehitpause=1
+[State 181, 1]
+type = removeexplod
+trigger1 = movehit = 1
+trigger1 = AnimElemtime(19) >= 0
+id = 1090
+ignorehitpause=1
+
+[State 200, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABCABCC
+[Statedef 4020]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4020
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(19.0*fvar(14)),ceil(ceil(19.0*fvar(16))*3.92)
+kill = 0
+guardflag = H
+hitflag = MA
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10001
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 2
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "b"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4021
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABCABCCB
+[Statedef 4021]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4021
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 7
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(10) < 0
+anim = 2010+animelemno(0)
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(19.0*fvar(14)),ceil(ceil(19.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-50
+sparkno = s10015
+guard.sparkno = s10003
+hitsound   = s1,0+random%3
+guardsound = s3,2+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "236a"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4022
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 下段フィニッシュ
+[Statedef 4022]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4022
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = width
+trigger1 = 1
+player = 25,25
+ignorehitpause=1
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velset
+trigger1 = animelem = 17
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.87
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(18) >= 0
+trigger1 = animelemtime(28) < 0
+anim = 1230+animelemno(0)-18
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 9
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(33.0*fvar(14)),ceil(ceil(33.0*fvar(16))*3.92)
+kill = 0
+guardflag = L
+hitflag = MA
+pausetime = 12,12
+sparkxy = -40,-10
+sparkno = s10015
+hitsound   = s1,0+random%3
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -8
+ground.velocity = -8
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 21
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(ifelse(var(50)=1,38.0,54.0)*fvar(14)),ceil(ceil(ifelse(var(50)=1,38.0,54.0)*fvar(16))*3.92)
+guardflag = M
+id = 1200
+hitflag = MA
+pausetime = 15,15
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10022
+guard.sparkno = s10003
+hitsound   = s5,1
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 26
+ground.hittime  = 26
+guard.hittime  = 12
+guard.velocity = -8.2
+ground.velocity = -10,-6
+air.velocity = -10,-6
+air.hittime  = 40
+yaccel = 0.5
+fall = 1
+fall.recover = 0
+
+[State 200, 7]
+type = targetState
+trigger1 = animelemtime(21) >= 0
+trigger1 = movehit=1&&HitPauseTime<=1
+value = 88251
+id = 1200
+ignorehitpause=1
+persistent = 0
+
+[State 200, 1]
+type = varadd
+trigger1 = animelemtime(9)>=0
+trigger1 = animelemtime(10)<0
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+[State 200, 1]
+type = varadd
+trigger1 = animelemtime(21)>=0
+trigger1 = animelemtime(22)<0
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = animelemtime(9)>=0
+trigger1 = animelemtime(10)<0
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+[State 5100, shake]
+type = BGpalfx
+trigger1 = animelemtime(21)>=0
+trigger1 = animelemtime(22)<0
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 6
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 6
+value = 26,7
+volume = 255
+channel = 0
+[State 200, 4]
+type = null;PlaySnd
+trigger1 = animelem = 17
+value = 1200,2
+volume = -100
+
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABC2
+[Statedef 4030]
+type    = C
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4030
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.85
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = C, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(9.0*fvar(14)),ceil(ceil(9.0*fvar(16))*3.92)
+guardflag = L
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-10
+sparkno = s10000
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -2,-2.5
+
+[State 200, 1]
+type = varadd
+trigger1 = anim = 4030
+trigger1 = movehit
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 1
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "a"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4031
+ignorehitpause=1
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABC2A
+[Statedef 4031]
+type    = C
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4031
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.85
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 6
+movetype = I
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(10) < 0
+anim = 2040+animelemno(0)
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, NA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(9.0*fvar(14)),ceil(ceil(9.0*fvar(16))*3.92)
+guardflag = M
+kill = 0
+hitflag = MA
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-50
+sparkno = s10011
+guard.sparkno = s10003
+hitsound   = s1,3+random%7
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 27
+ground.hittime  = 27
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -2,-2.5
+
+[State 200, 1]
+type = varadd
+trigger1 = anim = 4031
+trigger1 = movehit
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "bx"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4040
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "2x"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random > Var(59) * 150
+value = 4032
+ignorehitpause=1
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABC2A2
+[Statedef 4032]
+type    = C
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4032
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.9
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 1]
+type = varadd
+trigger1 = anim = 4032
+trigger1 = movehit
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = C, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(9.0*fvar(14)),ceil(ceil(9.0*fvar(16))*3.92)
+guardflag = L
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-10
+sparkno = s10000
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -2,-2.5
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 1
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "bx"
+trigger1 = command = "holdfwd"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4033
+ignorehitpause=1
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 打ち上げフィニッシュ
+[Statedef 4033]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4033
+poweradd = 0
+sprpriority = 2
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(6) >= 0
+trigger1 = animelemtime(14) < 0
+anim = 2081+animelemno(0)-6
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+ignorehitpause=1
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 9
+attr = A, HA
+getpower = 0,0
+givepower = 15,15
+animtype  = up
+damage    = floor(ifelse(var(50)=1,23.0,36.0)*fvar(14)),ceil(ceil(ifelse(var(50)=1,27.0,36.0)*fvar(16))*3.92)
+guardflag = H
+hitflag = MA
+pausetime = 15,15
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10014
+guard.sparkno = s10003
+hitsound   = s5,1
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 22
+guard.hittime  = 15
+guard.velocity = -4
+ground.velocity = -.5,-15
+air.velocity = -.5,-15
+yaccel = 0.6
+fall = 1
+fall.recover = 0
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 26, 7
+volume = 255
+[State 200, 1]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 0
+volume = 100
+
+[State 200, 1]
+type = varadd
+trigger1 = AnimTime = 0
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABC2AZ
+[Statedef 4040]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4040
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(16.0*fvar(14)),ceil(ceil(16.0*fvar(16))*3.92)
+guardflag = H
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -10,-70
+sparkno = s10001
+guard.sparkno = s10002
+hitsound   = s2,0+random%5
+guardsound = s3,0+random%2
+ground.type = high
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -4
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit
+trigger1 = anim = 4040
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 2
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),0+random%6,0+random%4)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "a"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4041
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ABC2AZA
+[Statedef 4041]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4041
+poweradd = 0
+sprpriority = 2
+
+[State 200, 1]
+type = velset
+trigger1 = time = 0
+x = 6
+[State 200, 1]
+type = velmul
+trigger1 = 1
+x = 0.8
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 5
+movetype = I
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, HA
+getpower = 0,0
+givepower = ifelse(var(29)=0,15,0),ifelse(var(50)=0,0,15)
+animtype  = hard
+damage    = floor(16.0*fvar(14)),ceil(ceil(16.0*fvar(16))*3.92)
+guardflag = M
+hitflag = MA
+kill = 0
+pausetime = 10,10
+guard.pausetime = 10,10
+sparkxy = -20,-70
+sparkno = s10017
+guard.sparkno = s10003
+hitsound   = s1,3+random%7
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 21
+guard.hittime  = 12
+guard.velocity = -4
+ground.velocity = -14
+air.velocity = -1.5,-6.5
+yaccel = 0.5
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit
+trigger1 = anim = 4041
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 5100, shake]
+type = BGpalfx
+trigger1 = movehit = 1
+time = 2
+add = 256,-256,-256
+ignorehitpause=1
+persistent = 0
+
+[State 200, 3]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 0
+volume = 100
+[State 200, 4]
+type = PlaySnd
+trigger1 = animelem = 2
+value = ifelse(var(7),120,20),ifelse(var(7),4+random%5,3+random%3)
+volume = 255
+
+[State 200, 7]
+type = ChangeState
+triggerall = movecontact
+triggerall = movetype = A
+trigger1 = var(59) = 0
+trigger1 = command = "236b"
+trigger2 = var(59) > 0 && time > 0
+trigger2 = random < Var(59) * 150
+value = 4042
+[State 200, 7]
+type = targetState
+trigger1 = numtarget
+trigger1 = time > 5
+trigger1 = movehit=1&&HitPauseTime=0&&target,life<4
+value = 84000
+persistent = 0
+ignorehitpause=1
+[State 200, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------------------
+
+;特殊フィニッシュ
+[Statedef 4042]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 4042
+sprpriority = 2
+
+[state -2]
+type = Width
+trigger1 = animelemtime(8) >= 0
+trigger1 = animelemtime(9) < 0
+value = 35,0
+ignorehitpause = 1
+[State 200, 7]
+type = targetState
+triggerall = numtarget
+trigger1 = movehit=1&HitPauseTime<=1
+value = 77002
+ignorehitpause=1
+persistent = 0
+
+[State 200, 1]
+type = statetypeset
+trigger1 = animelem = 8
+movetype = I
+[State 200, 1]
+type = AttackDist
+trigger1 = 1
+value = 240
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 2100, 0
+volume = 100
+persistent = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = animelem = 7
+value = 2100, 1
+volume = 100
+persistent = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = animelem = 7
+value = 26, 7
+volume = 255
+persistent = 0
+[State 5100, shake]
+type = EnvShake
+trigger1 = AnimElem = 7
+time = 10
+freq = 120
+ampl = 6
+phase = -1
+
+[State 5100, shake]
+type = velset
+trigger1 = animelem = 5
+x = 6
+[State 5100, shake]
+type = velmul
+trigger1 = animelemtime(5) > 0
+x = 0.85
+[State 5100, shake]
+type = velset
+trigger1 = animelemtime(11) = 3
+x = 0
+
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(1) >= 0
+trigger1 = animelemtime(3) < 0
+anim = 2110+animelemno(0)-1
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+pausemovetime = 123456789
+supermovetime = 123456789
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = animelemtime(3) >= 0
+trigger1 = animelemtime(5) < 0
+trigger1 = numexplod(2100) = 0
+anim = 2113
+id = 2100
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removetime = -1
+pausemovetime = 123456789
+supermovetime = 123456789
+ignorehitpause=1
+removeongethit = 1
+[State 181, 1]
+type = removeexplod
+trigger1 = animelemtime(5) >= 0
+id = 2100
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(5) >= 0
+trigger1 = animelemtime(11) < 0
+anim = 2110+animelemno(0)-1
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+pausemovetime = 123456789
+supermovetime = 123456789
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(7) >= 0
+trigger1 = animelemtime(12) < 0
+anim = 2120+animelemno(0)-7
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+pausemovetime = 123456789
+supermovetime = 123456789
+ignorehitpause=1
+[State 181, 1]
+type = explod
+trigger1 = (gametime%2) = 0
+trigger1 = animelemtime(11) >= 0
+trigger1 = animelemtime(12) < 0
+anim = 2119
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+pausemovetime = 123456789
+supermovetime = 123456789
+ignorehitpause=1
+
+[State 200, 1]
+type = varadd
+trigger1 = movehit = 1
+var(2) = 1
+ignorehitpause=1
+persistent = 0
+
+[State 200, 2]
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, HA
+getpower = 0,0
+givepower = 15,15
+animtype  = up
+damage    = floor(ifelse(var(50)=1,65.0,78.0)*fvar(14)),ceil(ceil(ifelse(var(50)=1,65.0,78.0)*fvar(16))*3.92)
+guardflag = MA
+id = 1090
+hitflag = MAF
+pausetime = 17,17
+guard.pausetime = 14,14
+sparkno = -1
+guard.sparkno = -1
+hitsound   = s5,1
+guardsound = s3,2+random%2
+ground.type = low
+ground.slidetime = 21
+ground.hittime  = 28
+guard.hittime  = 8
+guard.velocity = -4.5
+ground.velocity = -2,-11
+air.hittime  = 28
+air.velocity = -2,-11
+yaccel = 0.55
+fall.recovertime = 28
+fall = 1
+palfx.time = 60
+palfx.sinadd = 255,255,255,3
+palfx.add = 0,0,0
+palfx.color = 0
+palfx.invertall = 1
+
+[State 52, 2]
+type = explod
+trigger1 = animelem = 8
+anim = 10103
+sprpriority = 2
+ownpal = 1
+pos = 0,5
+
+[State 181, 1]
+type = explod
+trigger1 = movehit = 1
+trigger1 = numexplod(1090) = 0
+id = 1090
+anim = 1090
+sprpriority = 3
+postype = p2
+pos = 0,target,Const(size.mid.pos.y)
+ownpal = 1
+bindtime = -1
+removetime = -1
+ignorehitpause=1
+
+[State 800, 2]
+type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

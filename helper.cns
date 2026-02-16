@@ -1,0 +1,3600 @@
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;ƒwƒ‹ƒp[
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[Statedef 20000]
+;anim=20000;‚È‚É‚à•\¦‚µ‚È‚¢±ÆÒ‚Å‚à‚¢‚¢‚¯‚Ç“ü‚ê‚È‚­‚Ä‚à‘S‘R–â‘è‚È‚¢
+ctrl=0 
+
+[State 20000,ŠÔˆá‚¢‚Å–{‘Ì‚ª—ˆ‚½‚ç—§‚¿‚ÖˆÚs]
+type=selfstate
+trigger1=!ishelper
+value=0
+
+[State 20000,ƒvƒŒƒCƒ„[”»’è]
+type=varset
+trigger1=command="U"&&root,command="U"
+trigger2=command="D"&&root,command="D"
+trigger3=command="B"&&root,command="B"
+trigger4=command="F"&&root,command="F"
+trigger5=command="a"&&root,command="a"
+trigger6=command="b"&&root,command="b"
+trigger7=command="c"&&root,command="c"
+trigger8=command="x"&&root,command="x"
+trigger9=command="y"&&root,command="y"
+trigger10=command="z"&&root,command="z"
+trigger11=command="start"&&root,command="start"
+var(59)=-1
+
+[State 20000,—§‚Á‚½‚çÁ¸]
+Type = DestroySelf
+triggerAll = isHelper
+Trigger1 = root,var(30)||(var(59)=-1 && time >= 5)
+trigger2=command="U"&&root,command="U"
+trigger3=command="D"&&root,command="D"
+trigger4=command="B"&&root,command="B"
+trigger5=command="F"&&root,command="F"
+trigger6=command="a"&&root,command="a"
+trigger7=command="b"&&root,command="b"
+trigger8=command="c"&&root,command="c"
+trigger9=command="x"&&root,command="x"
+trigger10=command="y"&&root,command="y"
+trigger11=command="z"&&root,command="z"
+trigger12=command="start"&&root,command="start"
+
+[State 10000,Ì×¸ŞON]
+type=varset
+triggerall=var(59)!=-1
+triggerall= time > 1
+trigger1=root,command="U"
+trigger2=root,command="D"
+trigger3=root,command="B"
+trigger4=root,command="F"
+trigger5=root,command="a"
+trigger6=root,command="b"
+trigger7=root,command="c"
+trigger8=root,command="x"
+trigger9=root,command="y"
+trigger10=root,command="z"
+trigger11=root,command="start"
+var(59)=1
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;ƒQ[ƒWŠÖ˜A
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;(HELPER)ƒQ[ƒW
+[Statedef 11000]
+type = A
+ctrl = 0
+anim = 11000
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 10
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+;---------------------[“§‰ß]
+[state a]
+type = null;Trans
+trigger1 = 1
+trans = addalpha
+alpha = 256, 256
+
+;---------------------[ƒQ[ƒW—Ê]
+[state -2,a];ƒQ[ƒW—Ê
+type = Explod
+trigger1 = Facing = 1
+trigger1 = numexplod(11010) = 0
+anim = 11010+root,var(2)
+id = 11010
+postype = left
+bindtime = -1
+pos = 19,230
+sprpriority = 97
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ƒQ[ƒW—Ê
+type = Explod
+trigger1 = Facing = -1
+trigger1 = numexplod(11010) = 0
+anim = 11010+root,var(2)
+id = 11010
+postype = right
+bindtime = -1
+pos = -19,230
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = -1
+ontop = 1
+
+[state a]
+type = ModifyExplod
+trigger1 = power <= 1000
+ID = 11010
+scale = power * 0.0010002,1
+
+;---------------------[]
+[state -2,a];ƒQ[ƒW˜ga
+type = Explod
+trigger1 = Facing = 1
+trigger1 = numexplod(11001) = 0
+anim = 11001+root,var(2)*2
+id = 11001
+postype = left
+bindtime = -1
+pos = 51,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ƒQ[ƒW˜ga
+type = Explod
+trigger1 = Facing = -1
+trigger1 = numexplod(11001) = 0
+anim = 11002+root,var(2)*2
+id = 11001
+postype = right
+bindtime = -1
+pos = -51,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+facing = 1
+ontop = 1
+
+[state -2,a];
+type = removeExplod
+trigger1 = power >= 1000
+id = 11001
+
+[state -2,a];ƒQ[ƒW˜gMAX
+type = Explod
+trigger1 = Facing = 1
+trigger1 = power >= 1000
+trigger1 = numexplod(11020) = 0
+anim = 11020+root,var(2)*2
+id = 11020
+postype = left
+bindtime = -1
+pos = 51,230
+sprpriority = 99
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ƒQ[ƒW˜gMAX
+type = Explod
+trigger1 = Facing = -1
+trigger1 = power >= 1000
+trigger1 = numexplod(11020) = 0
+anim = 11021+root,var(2)*2
+id = 11020
+postype = right
+bindtime = -1
+pos = -50,229
+sprpriority = 99
+removetime = -1
+ownpal = 1
+facing = 1
+ontop = 1
+
+[state a]
+type = changestate
+trigger1 = prevstateno != 11999
+trigger1 = root,stateno = 2900
+trigger1 = root,animtime = 0
+trigger2 = root,var(53) > 0
+value = 11999
+
+[state -2,a];
+type = removeExplod
+trigger1 = power < 1000
+id = 11020
+
+;----------------------------------------------------------------------------
+;(HELPER)ƒQ[ƒW2E—•‘‰œ‹`’†
+[Statedef 11999]
+type = A
+ctrl = 0
+anim = 11000
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 10
+
+[state a]
+type = ModifyExplod
+trigger1 = root,var(53) = [0,1000]
+ID = 11010
+scale = root,var(53) * 0.0010002,1
+
+;---------------------[ƒQ[ƒW—Ê]
+[state -2,a];ƒQ[ƒW—Ê
+type = Explod
+trigger1 = Facing = 1
+trigger1 = numexplod(11010) = 0
+anim = 11010+root,var(2)
+id = 11010
+postype = left
+bindtime = -1
+pos = 19,230
+sprpriority = 97
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ƒQ[ƒW—Ê
+type = Explod
+trigger1 = Facing = -1
+trigger1 = numexplod(11010) = 0
+anim = 11010+root,var(2)
+id = 11010
+postype = right
+bindtime = -1
+pos = -19,230
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = -1
+ontop = 1
+
+[state -2,a];ƒQ[ƒW˜ga
+type = Explod
+trigger1 = Facing = 1
+trigger1 = numexplod(11001) = 0
+anim = 11001+root,var(2)*2
+id = 11001
+postype = left
+bindtime = -1
+pos = 51,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ƒQ[ƒW˜ga
+type = Explod
+trigger1 = Facing = -1
+trigger1 = numexplod(11001) = 0
+anim = 11002+root,var(2)*2
+id = 11001
+postype = right
+bindtime = -1
+pos = -51,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+facing = 1
+ontop = 1
+
+[State -2, a];ƒsƒJƒsƒJŒõ‚é
+type = palfx
+trigger1 = time % 3 = 0
+time = 1
+add = 0,0,255
+mul = 0,0,255
+color = 256
+ignorehitpause = 0
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state -2,a];
+type = removeExplod
+trigger1 = time = 0
+id = 11001
+
+[state -2,a];
+type = removeExplod
+trigger1 = time = 0
+id = 11010
+
+[state -2,a];
+type = removeExplod
+trigger1 = time = 0
+id = 11020
+
+[state a]
+type = changestate
+trigger1 = root,var(53) <= 0
+value = 11000
+
+;---------------------------------------------------------
+;‰æ–Ê’[”»’èƒwƒ‹ƒp[‚»‚Ì1
+[Statedef 30000]
+Type = A
+Ctrl = 0
+Anim = 9999
+Velset = -10,0
+Movetype = I
+Physics = N
+Sprpriority = 1
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;ƒwƒ‹ƒp[‚Æˆê‚É”ò‚Ñ“¹‹ï‚ğ”ò‚Î‚·
+[State 30000]
+Type=Projectile
+Trigger1 = time=0
+Velocity = -10,0
+ProjID = 30000
+Projanim = 9999
+Offset = 0,0
+projstagebound = 0
+Projedgebound = 100000
+Projremovetime = -1
+
+;”ò‚Ñ“¹‹ï‚ªÁ‚¦‚½‚ç~‚Ü‚é
+[State 30000]
+Type = velset
+Trigger1 = Root,NumProjID(30000)=0
+Trigger1 = time>0
+x=0
+y=0
+
+;•\¦‚ğ‰¡‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì1]
+type = AppendToClipboard
+trigger1 = 1
+text = " Pos X=%d,Y=%d"
+params = ceil(Pos X),floor(Pos Y)
+ignorehitpause = 1
+
+;•\¦‚ğ‰º‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì2]
+type = AppendToClipboard
+trigger1 = 1
+text = "\nDist X=%d,Y=%d"
+params = floor(ParentDist X),ceil(ParentDist Y)
+ignorehitpause = 1
+
+;-------------------------------------------------------------------------------------
+;‰æ–Ê’[”»’èƒwƒ‹ƒp[‚»‚Ì2
+[Statedef 30010]
+Type = A
+Ctrl = 0
+Anim = 9999
+Velset = -10,0
+Movetype = I
+Physics = N
+Sprpriority = 1
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;ƒwƒ‹ƒp[‚Æˆê‚É”ò‚Ñ“¹‹ï‚ğ”ò‚Î‚·
+[State 6666]
+Type = Projectile
+Trigger1 = time=0
+Velocity = -10,0
+ProjID = 30010
+Projanim = 9999
+Offset = 0,0
+projstagebound = 0
+Projedgebound = 100000
+Projremovetime = -1
+
+;”ò‚Ñ“¹‹ï‚ªÁ‚¦‚½‚ç~‚Ü‚é
+[State 6666]
+Type = velset
+Trigger1 = Root,NumProjID(30010)=0
+Trigger1 = time>0
+x=0
+y=0
+
+;•\¦‚ğ‰¡‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì1]
+type = AppendToClipboard
+trigger1 = 1
+text = " Pos X=%d,Y=%d"
+params = ceil(Pos X),floor(Pos Y)
+ignorehitpause = 1
+
+;•\¦‚ğ‰º‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì2]
+type = AppendToClipboard
+trigger1 = 1
+text = "\nDist X=%d,Y=%d"
+params = floor(ParentDist X),ceil(ParentDist Y)
+ignorehitpause = 1
+
+;-------------------------------------------------------------------------------------
+;ƒK[ƒh—pƒwƒ‹ƒp[
+[Statedef 40000]
+Type = A
+Ctrl = 0
+Anim = 9999
+Velset = 0,0
+Movetype = I
+Physics = N
+Sprpriority = 1
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 40000, e‚É•t‚­ˆÊ’u]
+type = BindToParent
+trigger1 = 1
+time = 1
+facing = -1
+pos = 0,0
+IgnoreHitPause = 1
+
+[State 40000, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;•\¦‚ğ‰¡‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì1]
+type = AppendToClipboard
+trigger1 = 1
+text = " Pos X=%d,Y=%d"
+params = ceil(Pos X),floor(Pos Y)
+ignorehitpause = 1
+
+;•\¦‚ğ‰º‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì2]
+type = AppendToClipboard
+trigger1 = 1
+text = "\nDist X=%d,Y=%d"
+params = floor(ParentDist X),ceil(ParentDist Y)
+ignorehitpause = 1
+
+;-------------------------------------------------------------------------------------
+;ƒK[ƒh—pƒwƒ‹ƒp[
+[Statedef 40001]
+Type = A
+Ctrl = 0
+Anim = 99999
+Velset = 0,0
+Movetype = I
+Physics = N
+Sprpriority = 1
+
+[State 40000]
+type=selfstate
+triggerall = root,stateno != 1705
+trigger1 = root,movetype = A
+trigger1 = root,ctrl = 0
+value=40000
+IgnoreHitPause = 1
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 40000, e‚É•t‚­ˆÊ’u]
+type = BindToParent
+trigger1 = 1
+time = 1
+facing = 1
+pos = 0,0
+IgnoreHitPause = 1
+
+[State 40000, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------[]
+;12P(‹¶ƒ‚[ƒh)—pVARSET
+;---------------------[]
+
+;-------------------------------------------------------------------------------------
+;ŠÄ‹—pƒwƒ‹ƒp[
+[Statedef 60000]
+Type = U
+Ctrl = 0
+Anim = 9999
+Velset = 0,0
+Movetype = I
+Physics = N
+Sprpriority = 1
+ctrl = 0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 40000, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+IgnoreHitPause = 1
+
+[State -2]
+Type = BindToRoot
+Trigger1 = 1
+Time = 1
+Facing = 1
+Pos = 0,0
+IgnoreHitPause = 1
+
+[state 0,0]
+Type = SelfState
+trigger1 = !ishelper
+value = 0 + (pos Y < 0)*51
+IgnoreHitPause = 1
+
+[State -2]
+Type = AssertSpecial
+Trigger1 = 1
+Flag = Invisible
+Flag2 = NoShadow
+
+[State -2, –{‘ÌIDæ“¾]
+Type = VarSet
+Trigger1 = 1
+V = 0
+Value = Root,Var(51)
+IgnoreHitPause = 1
+
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(31) > 0
+Trigger1 = !PlayerIDExist(Var(31))
+Trigger2 = Var(31) = 0
+V = 31
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(31) = -1
+TriggerAll = Var(32) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(32)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(31) = -1
+Trigger2 = PlayerIDExist(Var(31))
+Trigger2 = !(PlayerID(Var(31)),MoveType = A)
+Trigger2 = PlayerID(Var(31)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(31)),StateNo != PlayerID(Var(31)),PrevStateNo
+Trigger2 = Var(32) < -1
+V = 32
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(31) = -1
+V = 57
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(31) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+14)
+Trigger1 = PlayerID(Var(2)+14),IsHelper
+V = 31
+Value = Var(2)+14
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(31) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)*(Var(13)>0)*(Var(15)>0)
+TriggerAll = (Var(17)>0)*(Var(19)>0)*(Var(21)>0)*(Var(23)>0)*(Var(25)>0)*(Var(27)>0)*(Var(29)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))*(PlayerIDExist(Var(17)))
+TriggerAll = (PlayerIDExist(Var(19)))*(PlayerIDExist(Var(21)))*(PlayerIDExist(Var(23)))
+TriggerAll = (PlayerIDExist(Var(25)))*(PlayerIDExist(Var(27)))*(PlayerIDExist(Var(29)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (PlayerID(Var(17)),IsHelper)*(PlayerID(Var(19)),IsHelper)*(PlayerID(Var(21)),IsHelper)
+TriggerAll = (PlayerID(Var(23)),IsHelper)*(PlayerID(Var(25)),IsHelper)
+TriggerAll = (PlayerID(Var(27)),IsHelper)*(PlayerID(Var(29)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))*(Var(2)!=Var(13))
+TriggerAll = (Var(2)!=Var(15))*(Var(2)!=Var(17))*(Var(2)!=Var(19))*(Var(2)!=Var(21))
+TriggerAll = (Var(2)!=Var(23))*(Var(2)!=Var(25))*(Var(2)!=Var(27))*(Var(2)!=Var(29))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 31
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(57) = -1
+TriggerAll = Var(31) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = 1
+V = 57
+Value = PlayerID(Var(31)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(57) > 0
+TriggerAll = Var(31) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+TriggerAll = !(PlayerID(Var(31)),Ctrl)
+Trigger1 = PlayerID(Var(31)),Time >= 600
+Trigger1 = PlayerID(Var(31)),Anim = Var(57)
+V = 31
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(31) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+TriggerAll = !(PlayerID(Var(31)),Ctrl)
+Trigger1 = (PlayerID(Var(31)),Command="a")+(PlayerID(Var(31)),Command="b")+(PlayerID(Var(31)),Command="c")
+Trigger2 = (PlayerID(Var(31)),Command="x")+(PlayerID(Var(31)),Command="y")+(PlayerID(Var(31)),Command="z")
+Trigger3 = (PlayerID(Var(31)),Command="up")+(PlayerID(Var(31)),Command="down")+(PlayerID(Var(31)),Command="fwd")
+Trigger4 = (PlayerID(Var(31)),Command="back")+(PlayerID(Var(31)),Command="start")
+V = 31
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(31) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = PlayerID(Var(31)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(31)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(31)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(31)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(31)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(31)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(31)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(31)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(31)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(31)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(31)),TeamSide = TeamSide
+V = 31
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(31) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = Var(32) = -1
+V = 32
+Value = PlayerID(Var(31)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(31) > 0
+TriggerAll = Var(32) > -3
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = PlayerID(Var(31)),MoveType = A
+Trigger2 = PlayerID(Var(31)),HitDefAttr = SCA,AA,AT,AP
+V = 32
+Value = -2-1*(PlayerID(Var(31)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(31) > 0
+TriggerAll = Var(32) = -3
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = PlayerID(Var(31)),MoveHit
+Trigger1 = !(PlayerID(Var(31)),MoveReversed)
+V = 32
+Value = Var(32)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(31) > 0
+TriggerAll = Var(32) = -3
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = PlayerID(Var(31)),MoveGuarded
+V = 32
+Value = Var(32)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(31) > 0
+TriggerAll = Var(32) = -3
+TriggerAll = PlayerIDExist(Var(31))
+TriggerAll = PlayerID(Var(31)),IsHelper
+TriggerAll = PlayerID(Var(31)),Time > 0
+Trigger1 = PlayerID(Var(31)),MoveReversed
+V = 32
+Value = Var(32)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(29) > 0
+Trigger1 = !PlayerIDExist(Var(29))
+Trigger2 = Var(29) = 0
+V = 29
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(29) = -1
+TriggerAll = Var(30) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(30)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(29) = -1
+Trigger2 = PlayerIDExist(Var(29))
+Trigger2 = !(PlayerID(Var(29)),MoveType = A)
+Trigger2 = PlayerID(Var(29)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(29)),StateNo != PlayerID(Var(29)),PrevStateNo
+Trigger2 = Var(30) < -1
+V = 30
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(29) = -1
+V = 56
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(29) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+13)
+Trigger1 = PlayerID(Var(2)+13),IsHelper
+V = 29
+Value = Var(2)+13
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(29) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)*(Var(13)>0)
+TriggerAll = (Var(15)>0)*(Var(17)>0)*(Var(19)>0)*(Var(21)>0)*(Var(23)>0)*(Var(25)>0)*(Var(27)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))*(PlayerIDExist(Var(17)))
+TriggerAll = (PlayerIDExist(Var(19)))*(PlayerIDExist(Var(21)))*(PlayerIDExist(Var(23)))
+TriggerAll = (PlayerIDExist(Var(25)))*(PlayerIDExist(Var(27)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (PlayerID(Var(17)),IsHelper)*(PlayerID(Var(19)),IsHelper)*(PlayerID(Var(21)),IsHelper)
+TriggerAll = (PlayerID(Var(23)),IsHelper)*(PlayerID(Var(25)),IsHelper)*(PlayerID(Var(27)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))*(Var(2)!=Var(13))
+TriggerAll = (Var(2)!=Var(15))*(Var(2)!=Var(17))*(Var(2)!=Var(19))*(Var(2)!=Var(21))
+TriggerAll = (Var(2)!=Var(23))*(Var(2)!=Var(25))*(Var(2)!=Var(27))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 29
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(56) = -1
+TriggerAll = Var(29) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = 1
+V = 56
+Value = PlayerID(Var(29)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(56) > 0
+TriggerAll = Var(29) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+TriggerAll = !(PlayerID(Var(29)),Ctrl)
+Trigger1 = PlayerID(Var(29)),Time >= 600
+Trigger1 = PlayerID(Var(29)),Anim = Var(56)
+V = 29
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(29) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+TriggerAll = !(PlayerID(Var(29)),Ctrl)
+Trigger1 = (PlayerID(Var(29)),Command="a")+(PlayerID(Var(29)),Command="b")+(PlayerID(Var(29)),Command="c")
+Trigger2 = (PlayerID(Var(29)),Command="x")+(PlayerID(Var(29)),Command="y")+(PlayerID(Var(29)),Command="z")
+Trigger3 = (PlayerID(Var(29)),Command="up")+(PlayerID(Var(29)),Command="down")+(PlayerID(Var(29)),Command="fwd")
+Trigger4 = (PlayerID(Var(29)),Command="back")+(PlayerID(Var(29)),Command="start")
+V = 29
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(29) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = PlayerID(Var(29)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(29)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(29)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(29)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(29)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(29)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(29)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(29)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(29)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(29)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(29)),TeamSide = TeamSide
+V = 29
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(29) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = Var(30) = -1
+V = 30
+Value = PlayerID(Var(29)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(29) > 0
+TriggerAll = Var(30) > -3
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = PlayerID(Var(29)),MoveType = A
+Trigger2 = PlayerID(Var(29)),HitDefAttr = SCA,AA,AT,AP
+V = 30
+Value = -2-1*(PlayerID(Var(29)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(29) > 0
+TriggerAll = Var(30) = -3
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = PlayerID(Var(29)),MoveHit
+Trigger1 = !(PlayerID(Var(29)),MoveReversed)
+V = 30
+Value = Var(30)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(29) > 0
+TriggerAll = Var(30) = -3
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = PlayerID(Var(29)),MoveGuarded
+V = 30
+Value = Var(30)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(29) > 0
+TriggerAll = Var(30) = -3
+TriggerAll = PlayerIDExist(Var(29))
+TriggerAll = PlayerID(Var(29)),IsHelper
+TriggerAll = PlayerID(Var(29)),Time > 0
+Trigger1 = PlayerID(Var(29)),MoveReversed
+V = 30
+Value = Var(30)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(27) > 0
+Trigger1 = !PlayerIDExist(Var(27))
+Trigger2 = Var(27) = 0
+V = 27
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(27) = -1
+TriggerAll = Var(28) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(28)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(27) = -1
+Trigger2 = PlayerIDExist(Var(27))
+Trigger2 = !(PlayerID(Var(27)),MoveType = A)
+Trigger2 = PlayerID(Var(27)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(27)),StateNo != PlayerID(Var(27)),PrevStateNo
+Trigger2 = Var(28) < -1
+V = 28
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(27) = -1
+V = 55
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(27) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+12)
+Trigger1 = PlayerID(Var(2)+12),IsHelper
+V = 27
+Value = Var(2)+12
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(27) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)*(Var(13)>0)
+TriggerAll = (Var(15)>0)*(Var(17)>0)*(Var(19)>0)*(Var(21)>0)*(Var(23)>0)*(Var(25)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))*(PlayerIDExist(Var(17)))
+TriggerAll = (PlayerIDExist(Var(19)))*(PlayerIDExist(Var(21)))*(PlayerIDExist(Var(23)))*(PlayerIDExist(Var(25)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (PlayerID(Var(17)),IsHelper)*(PlayerID(Var(19)),IsHelper)*(PlayerID(Var(21)),IsHelper)
+TriggerAll = (PlayerID(Var(23)),IsHelper)*(PlayerID(Var(25)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))*(Var(2)!=Var(13))
+TriggerAll = (Var(2)!=Var(15))*(Var(2)!=Var(17))*(Var(2)!=Var(19))*(Var(2)!=Var(21))*(Var(2)!=Var(23))*(Var(2)!=Var(25))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 27
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(55) = -1
+TriggerAll = Var(27) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = 1
+V = 55
+Value = PlayerID(Var(27)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(55) > 0
+TriggerAll = Var(27) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+TriggerAll = !(PlayerID(Var(27)),Ctrl)
+Trigger1 = PlayerID(Var(27)),Time >= 600
+Trigger1 = PlayerID(Var(27)),Anim = Var(55)
+V = 27
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(27) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+TriggerAll = !(PlayerID(Var(27)),Ctrl)
+Trigger1 = (PlayerID(Var(27)),Command="a")+(PlayerID(Var(27)),Command="b")+(PlayerID(Var(27)),Command="c")
+Trigger2 = (PlayerID(Var(27)),Command="x")+(PlayerID(Var(27)),Command="y")+(PlayerID(Var(27)),Command="z")
+Trigger3 = (PlayerID(Var(27)),Command="up")+(PlayerID(Var(27)),Command="down")+(PlayerID(Var(27)),Command="fwd")
+Trigger4 = (PlayerID(Var(27)),Command="back")+(PlayerID(Var(27)),Command="start")
+V = 27
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(27) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = PlayerID(Var(27)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(27)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(27)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(27)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(27)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(27)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(27)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(27)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(27)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(27)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(27)),TeamSide = TeamSide
+V = 27
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(27) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = Var(28) = -1
+V = 28
+Value = PlayerID(Var(27)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(27) > 0
+TriggerAll = Var(28) > -3
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = PlayerID(Var(27)),MoveType = A
+Trigger2 = PlayerID(Var(27)),HitDefAttr = SCA,AA,AT,AP
+V = 28
+Value = -2-1*(PlayerID(Var(27)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(27) > 0
+TriggerAll = Var(28) = -3
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = PlayerID(Var(27)),MoveHit
+Trigger1 = !(PlayerID(Var(27)),MoveReversed)
+V = 28
+Value = Var(28)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(27) > 0
+TriggerAll = Var(28) = -3
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = PlayerID(Var(27)),MoveGuarded
+V = 28
+Value = Var(28)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(27) > 0
+TriggerAll = Var(28) = -3
+TriggerAll = PlayerIDExist(Var(27))
+TriggerAll = PlayerID(Var(27)),IsHelper
+TriggerAll = PlayerID(Var(27)),Time > 0
+Trigger1 = PlayerID(Var(27)),MoveReversed
+V = 28
+Value = Var(28)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(25) > 0
+Trigger1 = !PlayerIDExist(Var(25))
+Trigger2 = Var(25) = 0
+V = 25
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(25) = -1
+TriggerAll = Var(26) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(26)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(25) = -1
+Trigger2 = PlayerIDExist(Var(25))
+Trigger2 = !(PlayerID(Var(25)),MoveType = A)
+Trigger2 = PlayerID(Var(25)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(25)),StateNo != PlayerID(Var(25)),PrevStateNo
+Trigger2 = Var(26) < -1
+V = 26
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(25) = -1
+V = 54
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(25) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+11)
+Trigger1 = PlayerID(Var(2)+11),IsHelper
+V = 25
+Value = Var(2)+11
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(25) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)
+TriggerAll = (Var(13)>0)*(Var(15)>0)*(Var(17)>0)*(Var(19)>0)*(Var(21)>0)*(Var(23)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))*(PlayerIDExist(Var(17)))
+TriggerAll = (PlayerIDExist(Var(19)))*(PlayerIDExist(Var(21)))*(PlayerIDExist(Var(23)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (PlayerID(Var(17)),IsHelper)*(PlayerID(Var(19)),IsHelper)
+TriggerAll = (PlayerID(Var(21)),IsHelper)*(PlayerID(Var(23)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))*(Var(2)!=Var(13))
+TriggerAll = (Var(2)!=Var(15))*(Var(2)!=Var(17))*(Var(2)!=Var(19))*(Var(2)!=Var(21))*(Var(2)!=Var(23))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 25
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(54) = -1
+TriggerAll = Var(25) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = 1
+V = 54
+Value = PlayerID(Var(25)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(54) > 0
+TriggerAll = Var(25) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+TriggerAll = !(PlayerID(Var(25)),Ctrl)
+Trigger1 = PlayerID(Var(25)),Time >= 600
+Trigger1 = PlayerID(Var(25)),Anim = Var(54)
+V = 25
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(25) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+TriggerAll = !(PlayerID(Var(25)),Ctrl)
+Trigger1 = (PlayerID(Var(25)),Command="a")+(PlayerID(Var(25)),Command="b")+(PlayerID(Var(25)),Command="c")
+Trigger2 = (PlayerID(Var(25)),Command="x")+(PlayerID(Var(25)),Command="y")+(PlayerID(Var(25)),Command="z")
+Trigger3 = (PlayerID(Var(25)),Command="up")+(PlayerID(Var(25)),Command="down")+(PlayerID(Var(25)),Command="fwd")
+Trigger4 = (PlayerID(Var(25)),Command="back")+(PlayerID(Var(25)),Command="start")
+V = 25
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(25) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = PlayerID(Var(25)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(25)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(25)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(25)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(25)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(25)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(25)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(25)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(25)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(25)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(25)),TeamSide = TeamSide
+V = 25
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(25) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = Var(26) = -1
+V = 26
+Value = PlayerID(Var(25)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(25) > 0
+TriggerAll = Var(26) > -3
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = PlayerID(Var(25)),MoveType = A
+Trigger2 = PlayerID(Var(25)),HitDefAttr = SCA,AA,AT,AP
+V = 26
+Value = -2-1*(PlayerID(Var(25)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(25) > 0
+TriggerAll = Var(26) = -3
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = PlayerID(Var(25)),MoveHit
+Trigger1 = !(PlayerID(Var(25)),MoveReversed)
+V = 26
+Value = Var(26)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(25) > 0
+TriggerAll = Var(26) = -3
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = PlayerID(Var(25)),MoveGuarded
+V = 26
+Value = Var(26)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(25) > 0
+TriggerAll = Var(26) = -3
+TriggerAll = PlayerIDExist(Var(25))
+TriggerAll = PlayerID(Var(25)),IsHelper
+TriggerAll = PlayerID(Var(25)),Time > 0
+Trigger1 = PlayerID(Var(25)),MoveReversed
+V = 26
+Value = Var(26)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(23) > 0
+Trigger1 = !PlayerIDExist(Var(23))
+Trigger2 = Var(23) = 0
+V = 23
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(23) = -1
+TriggerAll = Var(24) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(24)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(23) = -1
+Trigger2 = PlayerIDExist(Var(23))
+Trigger2 = !(PlayerID(Var(23)),MoveType = A)
+Trigger2 = PlayerID(Var(23)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(23)),StateNo != PlayerID(Var(23)),PrevStateNo
+Trigger2 = Var(24) < -1
+V = 24
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(23) = -1
+V = 53
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(23) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+10)
+Trigger1 = PlayerID(Var(2)+10),IsHelper
+V = 23
+Value = Var(2)+10
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(23) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)
+TriggerAll = (Var(13)>0)*(Var(15)>0)*(Var(17)>0)*(Var(19)>0)*(Var(21)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))
+TriggerAll = (PlayerIDExist(Var(17)))*(PlayerIDExist(Var(19)))*(PlayerIDExist(Var(21)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (PlayerID(Var(17)),IsHelper)*(PlayerID(Var(19)),IsHelper)*(PlayerID(Var(21)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))
+TriggerAll = (Var(2)!=Var(13))*(Var(2)!=Var(15))*(Var(2)!=Var(17))*(Var(2)!=Var(19))*(Var(2)!=Var(21))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 23
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(53) = -1
+TriggerAll = Var(23) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = 1
+V = 53
+Value = PlayerID(Var(23)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(53) > 0
+TriggerAll = Var(23) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+TriggerAll = !(PlayerID(Var(23)),Ctrl)
+Trigger1 = PlayerID(Var(23)),Time >= 600
+Trigger1 = PlayerID(Var(23)),Anim = Var(53)
+V = 23
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(23) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+TriggerAll = !(PlayerID(Var(23)),Ctrl)
+Trigger1 = (PlayerID(Var(23)),Command="a")+(PlayerID(Var(23)),Command="b")+(PlayerID(Var(23)),Command="c")
+Trigger2 = (PlayerID(Var(23)),Command="x")+(PlayerID(Var(23)),Command="y")+(PlayerID(Var(23)),Command="z")
+Trigger3 = (PlayerID(Var(23)),Command="up")+(PlayerID(Var(23)),Command="down")+(PlayerID(Var(23)),Command="fwd")
+Trigger4 = (PlayerID(Var(23)),Command="back")+(PlayerID(Var(23)),Command="start")
+V = 23
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(23) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = PlayerID(Var(23)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(23)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(23)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(23)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(23)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(23)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(23)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(23)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(23)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(23)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(23)),TeamSide = TeamSide
+V = 23
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(23) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = Var(24) = -1
+V = 24
+Value = PlayerID(Var(23)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(23) > 0
+TriggerAll = Var(24) > -3
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = PlayerID(Var(23)),MoveType = A
+Trigger2 = PlayerID(Var(23)),HitDefAttr = SCA,AA,AT,AP
+V = 24
+Value = -2-1*(PlayerID(Var(23)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(23) > 0
+TriggerAll = Var(24) = -3
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = PlayerID(Var(23)),MoveHit
+Trigger1 = !(PlayerID(Var(23)),MoveReversed)
+V = 24
+Value = Var(24)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(23) > 0
+TriggerAll = Var(24) = -3
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = PlayerID(Var(23)),MoveGuarded
+V = 24
+Value = Var(24)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(23) > 0
+TriggerAll = Var(24) = -3
+TriggerAll = PlayerIDExist(Var(23))
+TriggerAll = PlayerID(Var(23)),IsHelper
+TriggerAll = PlayerID(Var(23)),Time > 0
+Trigger1 = PlayerID(Var(23)),MoveReversed
+V = 24
+Value = Var(24)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(21) > 0
+Trigger1 = !PlayerIDExist(Var(21))
+Trigger2 = Var(21) = 0
+V = 21
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(21) = -1
+TriggerAll = Var(22) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(22)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(21) = -1
+Trigger2 = PlayerIDExist(Var(21))
+Trigger2 = !(PlayerID(Var(21)),MoveType = A)
+Trigger2 = PlayerID(Var(21)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(21)),StateNo != PlayerID(Var(21)),PrevStateNo
+Trigger2 = Var(22) < -1
+V = 22
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(21) = -1
+V = 52
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(21) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+9)
+Trigger1 = PlayerID(Var(2)+9),IsHelper
+V = 21
+Value = Var(2)+9
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(21) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)
+TriggerAll = (Var(11)>0)*(Var(13)>0)*(Var(15)>0)*(Var(17)>0)*(Var(19)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))
+TriggerAll = (PlayerIDExist(Var(17)))*(PlayerIDExist(Var(19)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (PlayerID(Var(17)),IsHelper)*(PlayerID(Var(19)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))
+TriggerAll = (Var(2)!=Var(13))*(Var(2)!=Var(15))*(Var(2)!=Var(17))*(Var(2)!=Var(19))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 21
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(52) = -1
+TriggerAll = Var(21) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = 1
+V = 52
+Value = PlayerID(Var(21)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(52) > 0
+TriggerAll = Var(21) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+TriggerAll = !(PlayerID(Var(21)),Ctrl)
+Trigger1 = PlayerID(Var(21)),Time >= 600
+Trigger1 = PlayerID(Var(21)),Anim = Var(52)
+V = 21
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(21) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+TriggerAll = !(PlayerID(Var(21)),Ctrl)
+Trigger1 = (PlayerID(Var(21)),Command="a")+(PlayerID(Var(21)),Command="b")+(PlayerID(Var(21)),Command="c")
+Trigger2 = (PlayerID(Var(21)),Command="x")+(PlayerID(Var(21)),Command="y")+(PlayerID(Var(21)),Command="z")
+Trigger3 = (PlayerID(Var(21)),Command="up")+(PlayerID(Var(21)),Command="down")+(PlayerID(Var(21)),Command="fwd")
+Trigger4 = (PlayerID(Var(21)),Command="back")+(PlayerID(Var(21)),Command="start")
+V = 21
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(21) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = PlayerID(Var(21)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(21)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(21)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(21)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(21)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(21)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(21)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(21)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(21)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(21)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(21)),TeamSide = TeamSide
+V = 21
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(21) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = Var(22) = -1
+V = 22
+Value = PlayerID(Var(21)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(21) > 0
+TriggerAll = Var(22) > -3
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = PlayerID(Var(21)),MoveType = A
+Trigger2 = PlayerID(Var(21)),HitDefAttr = SCA,AA,AT,AP
+V = 22
+Value = -2-1*(PlayerID(Var(21)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(21) > 0
+TriggerAll = Var(22) = -3
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = PlayerID(Var(21)),MoveHit
+Trigger1 = !(PlayerID(Var(21)),MoveReversed)
+V = 22
+Value = Var(22)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(21) > 0
+TriggerAll = Var(22) = -3
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = PlayerID(Var(21)),MoveGuarded
+V = 22
+Value = Var(22)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(21) > 0
+TriggerAll = Var(22) = -3
+TriggerAll = PlayerIDExist(Var(21))
+TriggerAll = PlayerID(Var(21)),IsHelper
+TriggerAll = PlayerID(Var(21)),Time > 0
+Trigger1 = PlayerID(Var(21)),MoveReversed
+V = 22
+Value = Var(22)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(19) > 0
+Trigger1 = !PlayerIDExist(Var(19))
+Trigger2 = Var(19) = 0
+V = 19
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(19) = -1
+TriggerAll = Var(20) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(20)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(19) = -1
+Trigger2 = PlayerIDExist(Var(19))
+Trigger2 = !(PlayerID(Var(19)),MoveType = A)
+Trigger2 = PlayerID(Var(19)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(19)),StateNo != PlayerID(Var(19)),PrevStateNo
+Trigger2 = Var(20) < -1
+V = 20
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(19) = -1
+V = 51
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(19) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+8)
+Trigger1 = PlayerID(Var(2)+8),IsHelper
+V = 19
+Value = Var(2)+8
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(19) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)*(Var(13)>0)*(Var(15)>0)*(Var(17)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))*(PlayerIDExist(Var(17)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)
+TriggerAll = (PlayerID(Var(15)),IsHelper)*(PlayerID(Var(17)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))
+TriggerAll = (Var(2)!=Var(11))*(Var(2)!=Var(13))*(Var(2)!=Var(15))*(Var(2)!=Var(17))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 19
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(51) = -1
+TriggerAll = Var(19) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = 1
+V = 51
+Value = PlayerID(Var(19)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(51) > 0
+TriggerAll = Var(19) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+TriggerAll = !(PlayerID(Var(19)),Ctrl)
+Trigger1 = PlayerID(Var(19)),Time >= 600
+Trigger1 = PlayerID(Var(19)),Anim = Var(51)
+V = 19
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(19) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+TriggerAll = !(PlayerID(Var(19)),Ctrl)
+Trigger1 = (PlayerID(Var(19)),Command="a")+(PlayerID(Var(19)),Command="b")+(PlayerID(Var(19)),Command="c")
+Trigger2 = (PlayerID(Var(19)),Command="x")+(PlayerID(Var(19)),Command="y")+(PlayerID(Var(19)),Command="z")
+Trigger3 = (PlayerID(Var(19)),Command="up")+(PlayerID(Var(19)),Command="down")+(PlayerID(Var(19)),Command="fwd")
+Trigger4 = (PlayerID(Var(19)),Command="back")+(PlayerID(Var(19)),Command="start")
+V = 19
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(19) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = PlayerID(Var(19)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(19)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(19)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(19)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(19)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(19)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(19)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(19)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(19)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(19)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(19)),TeamSide = TeamSide
+V = 19
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(19) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = Var(20) = -1
+V = 20
+Value = PlayerID(Var(19)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(19) > 0
+TriggerAll = Var(20) > -3
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = PlayerID(Var(19)),MoveType = A
+Trigger2 = PlayerID(Var(19)),HitDefAttr = SCA,AA,AT,AP
+V = 20
+Value = -2-1*(PlayerID(Var(19)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(19) > 0
+TriggerAll = Var(20) = -3
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = PlayerID(Var(19)),MoveHit
+Trigger1 = !(PlayerID(Var(19)),MoveReversed)
+V = 20
+Value = Var(20)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(19) > 0
+TriggerAll = Var(20) = -3
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = PlayerID(Var(19)),MoveGuarded
+V = 20
+Value = Var(20)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(19) > 0
+TriggerAll = Var(20) = -3
+TriggerAll = PlayerIDExist(Var(19))
+TriggerAll = PlayerID(Var(19)),IsHelper
+TriggerAll = PlayerID(Var(19)),Time > 0
+Trigger1 = PlayerID(Var(19)),MoveReversed
+V = 20
+Value = Var(20)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(17) > 0
+Trigger1 = !PlayerIDExist(Var(17))
+Trigger2 = Var(17) = 0
+V = 17
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(17) = -1
+TriggerAll = Var(18) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(18)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(17) = -1
+Trigger2 = PlayerIDExist(Var(17))
+Trigger2 = !(PlayerID(Var(17)),MoveType = A)
+Trigger2 = PlayerID(Var(17)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(17)),StateNo != PlayerID(Var(17)),PrevStateNo
+Trigger2 = Var(18) < -1
+V = 18
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(17) = -1
+V = 50
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(17) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+7)
+Trigger1 = PlayerID(Var(2)+7),IsHelper
+V = 17
+Value = Var(2)+7
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(17) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)*(Var(13)>0)*(Var(15)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))*(PlayerIDExist(Var(15)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)*(PlayerID(Var(15)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))
+TriggerAll = (Var(2)!=Var(11))*(Var(2)!=Var(13))*(Var(2)!=Var(15))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 17
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(50) = -1
+TriggerAll = Var(17) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = 1
+V = 50
+Value = PlayerID(Var(17)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(50) > 0
+TriggerAll = Var(17) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+TriggerAll = !(PlayerID(Var(17)),Ctrl)
+Trigger1 = PlayerID(Var(17)),Time >= 600
+Trigger1 = PlayerID(Var(17)),Anim = Var(50)
+V = 17
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(17) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+TriggerAll = !(PlayerID(Var(17)),Ctrl)
+Trigger1 = (PlayerID(Var(17)),Command="a")+(PlayerID(Var(17)),Command="b")+(PlayerID(Var(17)),Command="c")
+Trigger2 = (PlayerID(Var(17)),Command="x")+(PlayerID(Var(17)),Command="y")+(PlayerID(Var(17)),Command="z")
+Trigger3 = (PlayerID(Var(17)),Command="up")+(PlayerID(Var(17)),Command="down")+(PlayerID(Var(17)),Command="fwd")
+Trigger4 = (PlayerID(Var(17)),Command="back")+(PlayerID(Var(17)),Command="start")
+V = 17
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(17) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = PlayerID(Var(17)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(17)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(17)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(17)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(17)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(17)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(17)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(17)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(17)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(17)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(17)),TeamSide = TeamSide
+V = 17
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(17) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = Var(18) = -1
+V = 18
+Value = PlayerID(Var(17)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(17) > 0
+TriggerAll = Var(18) > -3
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = PlayerID(Var(17)),MoveType = A
+Trigger2 = PlayerID(Var(17)),HitDefAttr = SCA,AA,AT,AP
+V = 18
+Value = -2-1*(PlayerID(Var(17)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(17) > 0
+TriggerAll = Var(18) = -3
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = PlayerID(Var(17)),MoveHit
+Trigger1 = !(PlayerID(Var(17)),MoveReversed)
+V = 18
+Value = Var(18)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(17) > 0
+TriggerAll = Var(18) = -3
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = PlayerID(Var(17)),MoveGuarded
+V = 18
+Value = Var(18)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(17) > 0
+TriggerAll = Var(18) = -3
+TriggerAll = PlayerIDExist(Var(17))
+TriggerAll = PlayerID(Var(17)),IsHelper
+TriggerAll = PlayerID(Var(17)),Time > 0
+Trigger1 = PlayerID(Var(17)),MoveReversed
+V = 18
+Value = Var(18)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(15) > 0
+Trigger1 = !PlayerIDExist(Var(15))
+Trigger2 = Var(15) = 0
+V = 15
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(15) = -1
+TriggerAll = Var(16) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(16)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(15) = -1
+Trigger2 = PlayerIDExist(Var(15))
+Trigger2 = !(PlayerID(Var(15)),MoveType = A)
+Trigger2 = PlayerID(Var(15)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(15)),StateNo != PlayerID(Var(15)),PrevStateNo
+Trigger2 = Var(16) < -1
+V = 16
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(15) = -1
+V = 49
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(15) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+6)
+Trigger1 = PlayerID(Var(2)+6),IsHelper
+V = 15
+Value = Var(2)+6
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(15) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)*(Var(13)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))
+TriggerAll = (PlayerIDExist(Var(9)))*(PlayerIDExist(Var(11)))*(PlayerIDExist(Var(13)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)
+TriggerAll = (PlayerID(Var(9)),IsHelper)*(PlayerID(Var(11)),IsHelper)*(PlayerID(Var(13)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))*(Var(2)!=Var(13))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 15
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(49) = -1
+TriggerAll = Var(15) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = 1
+V = 49
+Value = PlayerID(Var(15)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(49) > 0
+TriggerAll = Var(15) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+TriggerAll = !(PlayerID(Var(15)),Ctrl)
+Trigger1 = PlayerID(Var(15)),Time >= 600
+Trigger1 = PlayerID(Var(15)),Anim = Var(49)
+V = 15
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(15) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+TriggerAll = !(PlayerID(Var(15)),Ctrl)
+Trigger1 = (PlayerID(Var(15)),Command="a")+(PlayerID(Var(15)),Command="b")+(PlayerID(Var(15)),Command="c")
+Trigger2 = (PlayerID(Var(15)),Command="x")+(PlayerID(Var(15)),Command="y")+(PlayerID(Var(15)),Command="z")
+Trigger3 = (PlayerID(Var(15)),Command="up")+(PlayerID(Var(15)),Command="down")+(PlayerID(Var(15)),Command="fwd")
+Trigger4 = (PlayerID(Var(15)),Command="back")+(PlayerID(Var(15)),Command="start")
+V = 15
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(15) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = PlayerID(Var(15)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(15)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(15)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(15)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(15)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(15)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(15)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(15)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(15)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(15)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(15)),TeamSide = TeamSide
+V = 15
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(15) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = Var(16) = -1
+V = 16
+Value = PlayerID(Var(15)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(15) > 0
+TriggerAll = Var(16) > -3
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = PlayerID(Var(15)),MoveType = A
+Trigger2 = PlayerID(Var(15)),HitDefAttr = SCA,AA,AT,AP
+V = 16
+Value = -2-1*(PlayerID(Var(15)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(15) > 0
+TriggerAll = Var(16) = -3
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = PlayerID(Var(15)),MoveHit
+Trigger1 = !(PlayerID(Var(15)),MoveReversed)
+V = 16
+Value = Var(16)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(15) > 0
+TriggerAll = Var(16) = -3
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = PlayerID(Var(15)),MoveGuarded
+V = 16
+Value = Var(16)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(15) > 0
+TriggerAll = Var(16) = -3
+TriggerAll = PlayerIDExist(Var(15))
+TriggerAll = PlayerID(Var(15)),IsHelper
+TriggerAll = PlayerID(Var(15)),Time > 0
+Trigger1 = PlayerID(Var(15)),MoveReversed
+V = 16
+Value = Var(16)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(13) > 0
+Trigger1 = !PlayerIDExist(Var(13))
+Trigger2 = Var(13) = 0
+V = 13
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(13) = -1
+TriggerAll = Var(14) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(14)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(13) = -1
+Trigger2 = PlayerIDExist(Var(13))
+Trigger2 = !(PlayerID(Var(13)),MoveType = A)
+Trigger2 = PlayerID(Var(13)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(13)),StateNo != PlayerID(Var(13)),PrevStateNo
+Trigger2 = Var(14) < -1
+V = 14
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(13) = -1
+V = 48
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(13) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+5)
+Trigger1 = PlayerID(Var(2)+5),IsHelper
+V = 13
+Value = Var(2)+5
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(13) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)*(Var(11)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))
+TriggerAll = (PlayerIDExist(Var(9)))*(PlayerIDExist(Var(11)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)
+TriggerAll = (PlayerID(Var(9)),IsHelper)*(PlayerID(Var(11)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))*(Var(2)!=Var(11))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 13
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(48) = -1
+TriggerAll = Var(13) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = 1
+V = 48
+Value = PlayerID(Var(13)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(48) > 0
+TriggerAll = Var(13) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+TriggerAll = !(PlayerID(Var(13)),Ctrl)
+Trigger1 = PlayerID(Var(13)),Time >= 600
+Trigger1 = PlayerID(Var(13)),Anim = Var(48)
+V = 13
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(13) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+TriggerAll = !(PlayerID(Var(13)),Ctrl)
+Trigger1 = (PlayerID(Var(13)),Command="a")+(PlayerID(Var(13)),Command="b")+(PlayerID(Var(13)),Command="c")
+Trigger2 = (PlayerID(Var(13)),Command="x")+(PlayerID(Var(13)),Command="y")+(PlayerID(Var(13)),Command="z")
+Trigger3 = (PlayerID(Var(13)),Command="up")+(PlayerID(Var(13)),Command="down")+(PlayerID(Var(13)),Command="fwd")
+Trigger4 = (PlayerID(Var(13)),Command="back")+(PlayerID(Var(13)),Command="start")
+V = 13
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(13) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = PlayerID(Var(13)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(13)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(13)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(13)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(13)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(13)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(13)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(13)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(13)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(13)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(13)),TeamSide = TeamSide
+V = 13
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(13) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = Var(14) = -1
+V = 14
+Value = PlayerID(Var(13)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(13) > 0
+TriggerAll = Var(14) > -3
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = PlayerID(Var(13)),MoveType = A
+Trigger2 = PlayerID(Var(13)),HitDefAttr = SCA,AA,AT,AP
+V = 14
+Value = -2-1*(PlayerID(Var(13)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(13) > 0
+TriggerAll = Var(14) = -3
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = PlayerID(Var(13)),MoveHit
+Trigger1 = !(PlayerID(Var(13)),MoveReversed)
+V = 14
+Value = Var(14)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(13) > 0
+TriggerAll = Var(14) = -3
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = PlayerID(Var(13)),MoveGuarded
+V = 14
+Value = Var(14)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(13) > 0
+TriggerAll = Var(14) = -3
+TriggerAll = PlayerIDExist(Var(13))
+TriggerAll = PlayerID(Var(13)),IsHelper
+TriggerAll = PlayerID(Var(13)),Time > 0
+Trigger1 = PlayerID(Var(13)),MoveReversed
+V = 14
+Value = Var(14)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(11) > 0
+Trigger1 = !PlayerIDExist(Var(11))
+Trigger2 = Var(11) = 0
+V = 11
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(11) = -1
+TriggerAll = Var(12) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(12)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(11) = -1
+Trigger2 = PlayerIDExist(Var(11))
+Trigger2 = !(PlayerID(Var(11)),MoveType = A)
+Trigger2 = PlayerID(Var(11)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(11)),StateNo != PlayerID(Var(11)),PrevStateNo
+Trigger2 = Var(12) < -1
+V = 12
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(11) = -1
+V = 47
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(11) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+4)
+Trigger1 = PlayerID(Var(2)+4),IsHelper
+V = 11
+Value = Var(2)+4
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(11) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)*(Var(9)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))*(PlayerIDExist(Var(9)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)*(PlayerID(Var(9)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))*(Var(2)!=Var(9))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 11
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(47) = -1
+TriggerAll = Var(11) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = 1
+V = 47
+Value = PlayerID(Var(11)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(47) > 0
+TriggerAll = Var(11) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+TriggerAll = !(PlayerID(Var(11)),Ctrl)
+Trigger1 = PlayerID(Var(11)),Time >= 600
+Trigger1 = PlayerID(Var(11)),Anim = Var(47)
+V = 11
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(11) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+TriggerAll = !(PlayerID(Var(11)),Ctrl)
+Trigger1 = (PlayerID(Var(11)),Command="a")+(PlayerID(Var(11)),Command="b")+(PlayerID(Var(11)),Command="c")
+Trigger2 = (PlayerID(Var(11)),Command="x")+(PlayerID(Var(11)),Command="y")+(PlayerID(Var(11)),Command="z")
+Trigger3 = (PlayerID(Var(11)),Command="up")+(PlayerID(Var(11)),Command="down")+(PlayerID(Var(11)),Command="fwd")
+Trigger4 = (PlayerID(Var(11)),Command="back")+(PlayerID(Var(11)),Command="start")
+V = 11
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(11) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = PlayerID(Var(11)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(11)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(11)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(11)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(11)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(11)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(11)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(11)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(11)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(11)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(11)),TeamSide = TeamSide
+V = 11
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(11) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = Var(12) = -1
+V = 12
+Value = PlayerID(Var(11)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(11) > 0
+TriggerAll = Var(12) > -3
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = PlayerID(Var(11)),MoveType = A
+Trigger2 = PlayerID(Var(11)),HitDefAttr = SCA,AA,AT,AP
+V = 12
+Value = -2-1*(PlayerID(Var(11)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(11) > 0
+TriggerAll = Var(12) = -3
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = PlayerID(Var(11)),MoveHit
+Trigger1 = !(PlayerID(Var(11)),MoveReversed)
+V = 12
+Value = Var(12)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(11) > 0
+TriggerAll = Var(12) = -3
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = PlayerID(Var(11)),MoveGuarded
+V = 12
+Value = Var(12)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(11) > 0
+TriggerAll = Var(12) = -3
+TriggerAll = PlayerIDExist(Var(11))
+TriggerAll = PlayerID(Var(11)),IsHelper
+TriggerAll = PlayerID(Var(11)),Time > 0
+Trigger1 = PlayerID(Var(11)),MoveReversed
+V = 12
+Value = Var(12)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(9) > 0
+Trigger1 = !PlayerIDExist(Var(9))
+Trigger2 = Var(9) = 0
+V = 9
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(9) = -1
+TriggerAll = Var(10) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(10)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(9) = -1
+Trigger2 = PlayerIDExist(Var(9))
+Trigger2 = !(PlayerID(Var(9)),MoveType = A)
+Trigger2 = PlayerID(Var(9)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(9)),StateNo != PlayerID(Var(9)),PrevStateNo
+Trigger2 = Var(10) < -1
+V = 10
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(9) = -1
+V = 46
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(9) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+3)
+Trigger1 = PlayerID(Var(2)+3),IsHelper
+V = 9
+Value = Var(2)+3
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(9) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)*(Var(7)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))*(PlayerIDExist(Var(7)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)*(PlayerID(Var(7)),IsHelper)
+TriggerAll = (Var(2)!=Var(3))*(Var(2)!=Var(5))*(Var(2)!=Var(7))
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 9
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(46) = -1
+TriggerAll = Var(9) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = 1
+V = 46
+Value = PlayerID(Var(9)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(46) > 0
+TriggerAll = Var(9) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+TriggerAll = !(PlayerID(Var(9)),Ctrl)
+Trigger1 = PlayerID(Var(9)),Time >= 600
+Trigger1 = PlayerID(Var(9)),Anim = Var(46)
+V = 9
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(9) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+TriggerAll = !(PlayerID(Var(9)),Ctrl)
+Trigger1 = (PlayerID(Var(9)),Command="a")+(PlayerID(Var(9)),Command="b")+(PlayerID(Var(9)),Command="c")
+Trigger2 = (PlayerID(Var(9)),Command="x")+(PlayerID(Var(9)),Command="y")+(PlayerID(Var(9)),Command="z")
+Trigger3 = (PlayerID(Var(9)),Command="up")+(PlayerID(Var(9)),Command="down")+(PlayerID(Var(9)),Command="fwd")
+Trigger4 = (PlayerID(Var(9)),Command="back")+(PlayerID(Var(9)),Command="start")
+V = 9
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(9) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = PlayerID(Var(9)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(9)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(9)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(9)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(9)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(9)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(9)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(9)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(9)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(9)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(9)),TeamSide = TeamSide
+V = 9
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(9) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = Var(10) = -1
+V = 10
+Value = PlayerID(Var(9)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(9) > 0
+TriggerAll = Var(10) > -3
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = PlayerID(Var(9)),MoveType = A
+Trigger2 = PlayerID(Var(9)),HitDefAttr = SCA,AA,AT,AP
+V = 10
+Value = -2-1*(PlayerID(Var(9)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(9) > 0
+TriggerAll = Var(10) = -3
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = PlayerID(Var(9)),MoveHit
+Trigger1 = !(PlayerID(Var(9)),MoveReversed)
+V = 10
+Value = Var(10)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(9) > 0
+TriggerAll = Var(10) = -3
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = PlayerID(Var(9)),MoveGuarded
+V = 10
+Value = Var(10)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(9) > 0
+TriggerAll = Var(10) = -3
+TriggerAll = PlayerIDExist(Var(9))
+TriggerAll = PlayerID(Var(9)),IsHelper
+TriggerAll = PlayerID(Var(9)),Time > 0
+Trigger1 = PlayerID(Var(9)),MoveReversed
+V = 10
+Value = Var(10)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(7) > 0
+Trigger1 = !PlayerIDExist(Var(7))
+Trigger2 = Var(7) = 0
+V = 7
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(7) = -1
+TriggerAll = Var(8) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(8)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(7) = -1
+Trigger2 = PlayerIDExist(Var(7))
+Trigger2 = !(PlayerID(Var(7)),MoveType = A)
+Trigger2 = PlayerID(Var(7)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(7)),StateNo != PlayerID(Var(7)),PrevStateNo
+Trigger2 = Var(8) < -1
+V = 8
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(7) = -1
+V = 45
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(7) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+2)
+Trigger1 = PlayerID(Var(2)+2),IsHelper
+V = 7
+Value = Var(2)+2
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(7) = -1
+TriggerAll = (Var(1)>0)*(Var(3)>0)*(Var(5)>0)
+TriggerAll = (PlayerIDExist(Var(3)))*(PlayerIDExist(Var(5)))
+TriggerAll = (PlayerID(Var(3)),IsHelper)*(PlayerID(Var(5)),IsHelper)
+TriggerAll = Var(2) != Var(3)
+TriggerAll = Var(2) != Var(5)
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 7
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(45) = -1
+TriggerAll = Var(7) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = 1
+V = 45
+Value = PlayerID(Var(7)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(45) > 0
+TriggerAll = Var(7) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+TriggerAll = !(PlayerID(Var(7)),Ctrl)
+Trigger1 = PlayerID(Var(7)),Time >= 600
+Trigger1 = PlayerID(Var(7)),Anim = Var(45)
+V = 7
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(7) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+TriggerAll = !(PlayerID(Var(7)),Ctrl)
+Trigger1 = (PlayerID(Var(7)),Command="a")+(PlayerID(Var(7)),Command="b")+(PlayerID(Var(7)),Command="c")
+Trigger2 = (PlayerID(Var(7)),Command="x")+(PlayerID(Var(7)),Command="y")+(PlayerID(Var(7)),Command="z")
+Trigger3 = (PlayerID(Var(7)),Command="up")+(PlayerID(Var(7)),Command="down")+(PlayerID(Var(7)),Command="fwd")
+Trigger4 = (PlayerID(Var(7)),Command="back")+(PlayerID(Var(7)),Command="start")
+V = 7
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(7) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = PlayerID(Var(7)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(7)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(7)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(7)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(7)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(7)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(7)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(7)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(7)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(7)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(7)),TeamSide = TeamSide
+V = 7
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(7) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = Var(8) = -1
+V = 8
+Value = PlayerID(Var(7)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(7) > 0
+TriggerAll = Var(8) > -3
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = PlayerID(Var(7)),MoveType = A
+Trigger2 = PlayerID(Var(7)),HitDefAttr = SCA,AA,AT,AP
+V = 8
+Value = -2-1*(PlayerID(Var(7)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(7) > 0
+TriggerAll = Var(8) = -3
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = PlayerID(Var(7)),MoveHit
+Trigger1 = !(PlayerID(Var(7)),MoveReversed)
+V = 8
+Value = Var(8)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(7) > 0
+TriggerAll = Var(8) = -3
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = PlayerID(Var(7)),MoveGuarded
+V = 8
+Value = Var(8)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(7) > 0
+TriggerAll = Var(8) = -3
+TriggerAll = PlayerIDExist(Var(7))
+TriggerAll = PlayerID(Var(7)),IsHelper
+TriggerAll = PlayerID(Var(7)),Time > 0
+Trigger1 = PlayerID(Var(7)),MoveReversed
+V = 8
+Value = Var(8)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(5) > 0
+Trigger1 = !PlayerIDExist(Var(5))
+Trigger2 = Var(5) = 0
+V = 5
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(5) = -1
+TriggerAll = Var(6) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(6)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(5) = -1
+Trigger2 = PlayerIDExist(Var(5))
+Trigger2 = !(PlayerID(Var(5)),MoveType = A)
+Trigger2 = PlayerID(Var(5)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(5)),StateNo != PlayerID(Var(5)),PrevStateNo
+Trigger2 = Var(6) < -1
+V = 6
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(5) = -1
+V = 44
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(5) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2)+1)
+Trigger1 = PlayerID(Var(2)+1),IsHelper
+V = 5
+Value = Var(2)+1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾]
+Type = VarSet
+TriggerAll = Var(5) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = Var(3) > 0
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = Var(2) != Var(3)
+Trigger1 = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 5
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(44) = -1
+TriggerAll = Var(5) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = 1
+V = 44
+Value = PlayerID(Var(5)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(44) > 0
+TriggerAll = Var(5) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+TriggerAll = !(PlayerID(Var(5)),Ctrl)
+Trigger1 = PlayerID(Var(5)),Time >= 600
+Trigger1 = PlayerID(Var(5)),Anim = Var(44)
+V = 5
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(5) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+TriggerAll = !(PlayerID(Var(5)),Ctrl)
+Trigger1 = (PlayerID(Var(5)),Command="a")+(PlayerID(Var(5)),Command="b")+(PlayerID(Var(5)),Command="c")
+Trigger2 = (PlayerID(Var(5)),Command="x")+(PlayerID(Var(5)),Command="y")+(PlayerID(Var(5)),Command="z")
+Trigger3 = (PlayerID(Var(5)),Command="up")+(PlayerID(Var(5)),Command="down")+(PlayerID(Var(5)),Command="fwd")
+Trigger4 = (PlayerID(Var(5)),Command="back")+(PlayerID(Var(5)),Command="start")
+V = 5
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(5) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = PlayerID(Var(5)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(5)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(5)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(5)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(5)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(5)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(5)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(5)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(5)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(5)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(5)),TeamSide = TeamSide
+V = 5
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(5) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = Var(6) = -1
+V = 6
+Value = PlayerID(Var(5)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(5) > 0
+TriggerAll = Var(6) > -3
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = PlayerID(Var(5)),MoveType = A
+Trigger2 = PlayerID(Var(5)),HitDefAttr = SCA,AA,AT,AP
+V = 6
+Value = -2-1*(PlayerID(Var(5)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(5) > 0
+TriggerAll = Var(6) = -3
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = PlayerID(Var(5)),MoveHit
+Trigger1 = !(PlayerID(Var(5)),MoveReversed)
+V = 6
+Value = Var(6)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(5) > 0
+TriggerAll = Var(6) = -3
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = PlayerID(Var(5)),MoveGuarded
+V = 6
+Value = Var(6)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(5) > 0
+TriggerAll = Var(6) = -3
+TriggerAll = PlayerIDExist(Var(5))
+TriggerAll = PlayerID(Var(5)),IsHelper
+TriggerAll = PlayerID(Var(5)),Time > 0
+Trigger1 = PlayerID(Var(5)),MoveReversed
+V = 6
+Value = Var(6)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(3) > 0
+Trigger1 = !PlayerIDExist(Var(3))
+Trigger2 = Var(3) = 0
+V = 3
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‰‰o—p‚Ìê‡Šo‚¦‚³‚¹‚Ä‚¨‚­]
+Type = VarSet
+TriggerAll = Var(3) = -1
+TriggerAll = Var(4) > 0
+Trigger1 = Var(42) = 0
+V = 33+(Var(33)>0)+(Var(34)>0)+(Var(35)>0)+(Var(36)>0)+(Var(37)>0)+(Var(38)>0)+(Var(39)>0)+(Var(40)>0)+(Var(41)>0)*(!Var(42))
+Value = Var(4)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(3) = -1
+Trigger2 = PlayerIDExist(Var(3))
+Trigger2 = !(PlayerID(Var(3)),MoveType = A)
+Trigger2 = PlayerID(Var(3)),PrevStateNo != 0
+Trigger2 = PlayerID(Var(3)),StateNo != PlayerID(Var(3)),PrevStateNo
+Trigger2 = Var(4) < -1
+V = 4
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[Animæ“¾€”õ]
+Type = VarSet
+Trigger1 = Var(3) = -1
+V = 43
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨ğŒ“à]
+Type = VarSet
+TriggerAll = Var(3) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2))
+Trigger1 = PlayerID(Var(2)),IsHelper
+V = 3
+Value = Var(2)
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨Animæ“¾]
+Type = VarSet
+TriggerAll = Var(43) = -1
+TriggerAll = Var(3) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = 1
+V = 43
+Value = PlayerID(Var(3)),Anim
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(43) > 0
+TriggerAll = Var(3) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = Var(4) > 0
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+TriggerAll = !(PlayerID(Var(3)),Ctrl)
+Trigger1 = PlayerID(Var(3)),Time >= 600
+Trigger1 = PlayerID(Var(3)),Anim = Var(43)
+V = 3
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨•Ê“rƒwƒ‹ƒp[¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(3) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = Var(4) > 0
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+TriggerAll = !(PlayerID(Var(3)),Ctrl)
+Trigger1 = (PlayerID(Var(3)),Command="a")+(PlayerID(Var(3)),Command="b")+(PlayerID(Var(3)),Command="c")
+Trigger2 = (PlayerID(Var(3)),Command="x")+(PlayerID(Var(3)),Command="y")+(PlayerID(Var(3)),Command="z")
+Trigger3 = (PlayerID(Var(3)),Command="up")+(PlayerID(Var(3)),Command="down")+(PlayerID(Var(3)),Command="fwd")
+Trigger4 = (PlayerID(Var(3)),Command="back")+(PlayerID(Var(3)),Command="start")
+V = 3
+Value = -1
+IgnoreHitPause = 1
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨‰‰o—p¨Ì‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(3) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = PlayerID(Var(3)),StateNo = Var(33)
+Trigger2 = PlayerID(Var(3)),StateNo = Var(34)
+Trigger3 = PlayerID(Var(3)),StateNo = Var(35)
+Trigger4 = PlayerID(Var(3)),StateNo = Var(36)
+Trigger5 = PlayerID(Var(3)),StateNo = Var(37)
+Trigger6 = PlayerID(Var(3)),StateNo = Var(38)
+Trigger7 = PlayerID(Var(3)),StateNo = Var(39)
+Trigger8 = PlayerID(Var(3)),StateNo = Var(40)
+Trigger9 = PlayerID(Var(3)),StateNo = Var(41)
+Trigger10 = PlayerID(Var(3)),StateNo = Var(42)
+Trigger11 = PlayerID(Var(3)),TeamSide = TeamSide
+V = 3
+Value = -1
+IgnoreHitPause = 1
+[State -2, ‚Æ‚è‚ ‚¦‚¸StateNoæ“¾]
+Type = VarSet
+TriggerAll = Var(3) > 0
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = Var(4) = -1
+V = 4
+Value = PlayerID(Var(3)),StateNo
+IgnoreHitPause = 1
+[State -2, UŒ‚—p‚Ìê‡StateNo‚ğÌ‚Ä‚é]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(3) > 0
+TriggerAll = Var(4) > -3
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = PlayerID(Var(3)),MoveType = A
+Trigger2 = PlayerID(Var(3)),HitDefAttr = SCA,AA,AT,AP
+V = 4
+Value = -2-1*(PlayerID(Var(3)),HitDefAttr = SCA,AA,AT,AP)
+IgnoreHitPause = 1
+[State -2, ƒqƒbƒg‚µ‚½‚ç-10¨Œ‹‰Ê“I‚É-13]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(3) > 0
+TriggerAll = Var(4) = -3
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = PlayerID(Var(3)),MoveHit
+Trigger1 = !(PlayerID(Var(3)),MoveReversed)
+V = 4
+Value = Var(4)-10
+IgnoreHitPause = 1
+[State -2, ƒK[ƒh‚³‚ê‚½‚ç-20¨Œ‹‰Ê“I‚É-23]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(3) > 0
+TriggerAll = Var(4) = -3
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = PlayerID(Var(3)),MoveGuarded
+V = 4
+Value = Var(4)-20
+IgnoreHitPause = 1
+[State -2, Reversal(ƒV[ƒ‹ƒh‚È‚Ç)‚³‚ê‚½‚ç-30¨Œ‹‰Ê“I‚É-33]
+Type = VarSet
+TriggerAll = Var(1) > 0
+TriggerAll = Var(3) > 0
+TriggerAll = Var(4) = -3
+TriggerAll = PlayerIDExist(Var(3))
+TriggerAll = PlayerID(Var(3)),IsHelper
+TriggerAll = PlayerID(Var(3)),Time > 0
+Trigger1 = PlayerID(Var(3)),MoveReversed
+V = 4
+Value = Var(4)-30
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////
+;//////////////////////////////////////////////////////////////////////////////
+[State -2, “Gƒwƒ‹ƒp[IDæ“¾¨ğŒŠO¨”rœ(—\‘ªID‚ğ+1)]
+Type = VarSet
+TriggerAll = Var(3) = -1
+TriggerAll = Var(1) > 0
+TriggerAll = PlayerIDExist(Var(2))
+Trigger1 = !(PlayerID(Var(2)),IsHelper)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////////////////////////////////
+[State -2, Ÿ‰ñID—\‘ª:F4‘Îô]
+Type = VarSet
+Trigger1 = ID > Var(2)
+Trigger1 = NumHelper(70000)
+V = 1
+Value = Helper(70000),ID-Root,Var(51)
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////////////////////////////////
+[State -2, Ÿ‰ñID—\‘ª+30]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+30)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+29]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+29)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+28]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+28)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+27]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+27)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+26]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+26)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+25]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+25)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+24]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+24)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+23]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+23)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+22]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+22)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+21]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+21)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+20]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+20)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+19]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+19)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+18]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+18)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+17]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+17)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+16]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+16)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+15]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+15)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+14]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+14)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+13]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+13)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+12]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+12)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+11]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+11)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+10]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+10)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+9]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+9)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+8]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+8)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+7]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+7)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+6]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+6)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+5]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+5)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+4]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+4)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+3]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+3)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+2]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+2)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª+1]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1)+1)
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, Ÿ‰ñID—\‘ª]
+Type = VarSet
+Trigger1 = PlayerIDExist(Var(0)+Var(1))
+V = 1
+Value = Var(1)+1
+IgnoreHitPause = 1
+[State -2, —\‘ªIDƒZƒbƒg]
+Type = VarSet
+Trigger1 = !PlayerIDExist(Var(0)+Var(1))
+V = 2
+Value = Var(0)+Var(1)
+IgnoreHitPause = 1
+;//////////////////////////////////////////////////////////////////////////////
+;‰‰o—pƒwƒ‹ƒp[®—
+[State -2]
+Type = VarSet
+TriggerAll = Var(42) > 0
+Trigger1 = (Var(42)=Var(41))+(Var(42)=Var(40))+(Var(42)=Var(39))+(Var(42)=Var(38))+(Var(42)=Var(37))
+Trigger2 = (Var(42)=Var(36))+(Var(42)=Var(35))+(Var(42)=Var(34))+(Var(42)=Var(33))
+V = 42
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(41) > 0
+Trigger1 = (Var(41)=Var(40))+(Var(41)=Var(39))+(Var(41)=Var(38))+(Var(41)=Var(37))
+Trigger2 = (Var(41)=Var(36))+(Var(41)=Var(35))+(Var(41)=Var(34))+(Var(41)=Var(33))
+V = 41
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(40) > 0
+Trigger1 = (Var(40)=Var(39))+(Var(40)=Var(38))+(Var(40)=Var(37))+(Var(40)=Var(36))
+Trigger2 = (Var(40)=Var(35))+(Var(40)=Var(34))+(Var(40)=Var(33))
+V = 40
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(39) > 0
+Trigger1 = (Var(39)=Var(38))+(Var(39)=Var(37))+(Var(39)=Var(36))+(Var(39)=Var(35))+(Var(39)=Var(34))+(Var(39)=Var(33))
+V = 39
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(38) > 0
+Trigger1 = (Var(38)=Var(37))+(Var(38)=Var(36))+(Var(38)=Var(35))+(Var(38)=Var(34))+(Var(38)=Var(33))
+V = 38
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(37) > 0
+Trigger1 = (Var(37)=Var(36))+(Var(37)=Var(35))+(Var(37)=Var(34))+(Var(37)=Var(33))
+V = 37
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(36) > 0
+Trigger1 = (Var(36)=Var(35))+(Var(36)=Var(34))+(Var(36)=Var(33))
+V = 36
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(35) > 0
+Trigger1 = (Var(35)=Var(34))+(Var(35)=Var(33))
+V = 35
+Value = 0
+IgnoreHitPause = 1
+[State -2]
+Type = VarSet
+TriggerAll = Var(34) > 0
+Trigger1 = (Var(34)=Var(33))
+V = 34
+Value = 0
+IgnoreHitPause = 1
+;===========================================================================================================================
+;=						F4‘Îôƒwƒ‹ƒp[								   =
+;===========================================================================================================================
+[StateDef 70000]
+Anim = 9999
+Ctrl = 0
+
+[State -2]
+Type = NotHitBy
+Trigger1 = 1
+Value = SCA
+
+
+
+[State -2]
+Type = AssertSpecial
+Trigger1 = 1
+Flag = Invisible
+Flag2 = NoShadow
+
+[State -2]
+Type = SelfState
+Trigger1 = !IsHelper
+Value = 0
+
+[State -2]
+Type = DestroySelf
+Trigger1 = NumHelper(60000)
+Trigger1 = Helper(60000),Var(1) >= ID-Root,Var(51)
+
+
+

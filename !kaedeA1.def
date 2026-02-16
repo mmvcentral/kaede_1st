@@ -1,0 +1,38 @@
+[Info]
+name = "kaede"
+displayname = "A-kaede-1st"
+versiondate = 7,25,2011
+mugenversion = 04,14,2002
+author = "ohgaki"
+pal.defaults = 1,2,3,4,5,6,7,8,9,10,11,12
+
+; Files for the player
+[Files]
+cmd = HAL_AI/kaedeA1.cmd
+cns = HAL_AI/kaedeA1.cns
+st  = HAL_AI/kaedeA1.cns
+st0 = HAL_AI/kaedeA1_2.cns
+st1 = HAL_AI/kaedeA1_life.cns
+st2 = kaedeA1_yarare.cns
+st3 = kaedeA1_hajiki.cns
+st4 = HAL_AI/kaedeA1_I.cns
+st5 = kaedeA1_S.cns
+st6 = HAL_AI/kaedeA1_H.cns
+st7 = kaedeA1_R1.cns
+st8 = kaedeA1_R2.cns
+stcommon = HAL_AI/kaedeA1_common.cns
+sprite = kaedeA1.sff
+anim = kaedeA1.air
+sound = kaedeA1.snd
+pal1 = kaedeA100.act
+pal2 = kaedeA101.act
+pal3 = kaedeA102.act
+pal4 = kaedeA100.act
+pal5 = kaedeA101.act
+pal6 = kaedeA102.act
+pal7 = kaedeA103.act
+pal8 = kaedeA104.act
+pal9 = kaedeA105.act
+pal10= kaedeA103.act
+pal11= kaedeA104.act
+pal12= kaedeA105.act

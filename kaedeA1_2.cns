@@ -1,0 +1,1199 @@
+[Statedef -2]
+
+[State 0, 1];非ダウンふっとび時無敵にするか　0でOFF 1でON　(デフォルトOFF)
+type = varset
+trigger1 = 1
+var(11) = 0
+
+[State 0, 1];ダウンバウンド中無敵にするか　0でOFF 1でON　(デフォルトOFF)
+type = varset
+trigger1 = 1
+var(15) = 0
+
+[State 0, 1];気絶を有効にするか　0でOFF 1でON　(デフォルトON)
+type = varset
+trigger1 = 1
+var(24) = 1
+
+[State 0, 1];ガードクラッシュを有効にするか 0でOFF 1でON　(デフォルトON)
+type = varset
+trigger1 = 1
+var(26) = 1
+
+[State 0, 1];徐々に自分の体力が減っていくか　0でOFF 1でON　(デフォルトOFF)
+type = varset
+trigger1 = 1
+var(31) = 0
+
+[State 0, 1];原作と同じタイミングでMovetype=Iにするか 0でOFF 1でON　(デフォルトOFF)
+type = varset
+trigger1 = 1
+var(9) = 0
+
+[State 0, 1];超奥義及び潜在・乱舞奥義使用体力条件を免除するか 0でOFF 1でON　(デフォルトOFF　トレモでの潜在・乱舞練習用スイッチ)
+type = varset
+trigger1 = 1
+var(38) = 0
+
+;---------------------------------------------------------------------------------------------------------------------------------
+;var(1) 使用不可
+;var(2) ヒット数
+;var(3) ガクラ
+;var(4) ガクラ回数
+;var(5) 先行入力記憶
+;var(6) キャンセル用先行入力記憶
+;var(7) 相手空中判別
+;var(8) 完全勝利
+;var(9) 判定消失後Iにするか
+;var(10) ダメージボイス
+;var(11) 吹っ飛び無敵設定
+;var(12) 被フライング防止無敵
+;var(13) 後ろ溜め完了フラグ
+;var(14) 下溜め完了フラグ
+;var(15) バウンド無敵設定
+;var(16) ライフ4分の1
+;var(17) 同キャラ判定
+;var(18) ガード不可現象回避
+;var(19) 楓J2B用
+;var(20) 乱舞奥義フラグ
+;var(21) 乱舞奥義時間
+;var(22) 遠距離対策（自座標X+75内でinguarddistが有効の場合1を返す）
+;var(23) 死亡ボイス
+;var(24) 気絶オンオフ
+;var(25) 中段
+;var(26) ガクラオンオフ
+;var(27) 絶命判定
+;var(28) 気絶短縮
+;var(29) 気絶回数
+;var(30) 超奥義勝利
+;var(31) 自分スリップダメージ
+;var(32) 空中判断
+;var(33) 気絶
+;var(34) 気絶準備
+;var(35) 食らい復帰判断
+;var(36) 気絶判断
+;var(37) 相手投げ無敵
+;var(38) 自体力制限ONOFF
+;var(39) p2name
+;var(40) 
+;var(41) 
+;var(42) 
+
+;var(50) 剣質 0=力 1=技
+;var(51) 
+
+;fvar(10) 補正
+;fvar(11) カウンター補正
+;fvar(12) 
+;fvar(13) 昇華補正
+;fvar(14) A倍値
+;fvar(15) P倍値
+;fvar(16) AG倍値
+;fvar(17) 3.9
+
+[State 3000, Width];奥義勝利判定
+type = varset
+trigger1 = roundstate>=3&&winKO&&(stateno=204||stateno=422||stateno=423||stateno=426||stateno=427||(stateno=[500,599]))
+var(30) = 1
+ignorehitpause = 1 
+
+[State 3000, Width]
+type = varadd
+trigger1 = var(3) > 0
+trigger1 = enemy,gethitvar(hitshaketime) = 0
+trigger1 = p2stateno != [150,159]
+trigger1 = (gametime%15) = 0
+var(3) = -4*(1+var(4))
+[State 3000, Width]
+type = varadd
+trigger1 = p2stateno = 59100
+trigger1 = var(3) >= 200
+var(4) = 1
+ignorehitpause=1
+[State 3000, Width]
+type = explod
+trigger1 = numexplod(715) = 0
+trigger1 = p2stateno = 59100
+trigger1 = var(3) >= 200
+anim = 10053
+id = 715
+sprpriority = 5
+postype = p2
+pos = 0,-100
+ownpal = 1
+facing = -1
+ignorehitpause=1
+[State 3000, Width]
+type = varset
+trigger1 = var(3) < 0
+trigger2 = p2stateno = 59100 && p2movetype = H
+var(3) = 0
+ignorehitpause=1
+
+[State 3000, Width]
+type = varset
+trigger1 = var(21) <= 0
+var(20) = 0
+ignorehitpause = 1 
+
+[State 3000, Width]
+type = varset
+trigger1 = var(24) = 0
+var(33) = 0
+ignorehitpause = 1 
+[State 3000, Width]
+type = varset
+trigger1 = var(26) = 0
+var(3) = 0
+ignorehitpause = 1 
+[State 3000, Width]
+type = lifeadd
+trigger1 = var(12)!=0&&var(31)=1&&gametime%16=0&&roundstate=2
+value = -4
+kill = 0
+ignorehitpause = 1
+
+[State 230, 1]
+type = powerset
+triggerall = !IsHelper
+triggerall = power >= 1000
+trigger1 = teammode = single
+trigger2 = teammode = turns
+value = 1000
+ignorehitpause = 1 
+pausemovetime = 123456789
+supermovetime = 123456789
+ignorehitpause = 1  
+[State 200, 1];ctrl=1ガー不回避
+type = varadd
+trigger1 = var(18)>0
+var(18) = -1
+[State 200, 1]
+type = varset
+trigger2 = enemy,gethitvar(fall) = 0 && p2statetype = A && p2movetype = H && (p2stateno != [120,159]) 
+trigger1 = p2stateno = 5040
+fvar(18) = 1
+ignorehitpause = 1 
+[State 200, 1]
+type = varadd
+triggerall = fvar(18) > 0
+trigger1 = p2statetype != A || p2movetype != H 
+trigger1 = p2stateno != 5040
+fvar(18) = -1
+ignorehitpause = 1 
+[State 200, 1]
+type = varset
+trigger1 = enemynear,facing = facing&&enemy,pos Y >= 0
+trigger2 = teammode = simul
+fvar(18) = 0
+[State 200, 1]
+type = varset
+trigger1 = p2movetype = H
+var(37) = 6
+[State 200, 1]
+type = varadd
+trigger1 = p2movetype != H
+var(37) = -1
+[State -1, Taunt]
+type = varset
+trigger1 = 1
+var(7) = ifelse(p2statetype=A,ifelse(p2movetype=H,2,1),0)
+[State 200, 1]
+type = varset
+trigger1 = movetype=H
+var(35) = 2
+[State 200, 1]
+type = varadd
+trigger1 = movetype!=H&&var(35)>0
+var(35) = -1
+
+[State 3000, Width]
+type = varadd
+trigger1 = var(33) > 0
+trigger1 = p2movetype!=H||(p2movetype=H&&p2statetype=L)||(p2movetype=H&&(p2stateno=[150,159]))
+trigger1 = (gametime%10) = 0
+var(33) = -2*(1+var(29))
+[State 3000, Width]
+type = varadd
+trigger1 = enemy(0),stateno = 59201 || enemy(0),stateno = 59205
+trigger1 = enemy(0),time = 10
+trigger2 = numenemy = 2
+trigger2 = enemy(1),stateno = 59201 || enemy(1),stateno = 59205
+trigger2 = enemy(1),time = 10
+var(29) = 1
+ignorehitpause=1
+[State 3000, Width]
+type = varadd
+trigger1 = var(34) >= 1
+var(34) = -1
+[State 3000, Width]
+type = varset
+trigger1 = p2stateno = 59201 || p2stateno = 59205
+var(34) = 0
+[State 3000, Width]
+type = varset
+trigger1 = var(34) >= 1
+trigger2 = p2stateno = 59100 && p2movetype = H
+trigger3 = p2stateno = 59201 || p2stateno = 59205
+trigger4 = var(33) < 0
+trigger5 = var(36)
+var(33) = 0
+[State 3000, Width]
+type = varset
+trigger1 = var(33) >= 180
+var(34) = 241
+[State 3000, Width]
+type = varadd
+triggerall = p2stateno = 59204 && enemy,command = "a"
+trigger1 = teammode = single || teammode = turns
+trigger1 = enemy,teammode = single || enemy,teammode = turns
+var(28) = 1
+[State 3000, Width]
+type = varadd
+triggerall = p2stateno = 59204 && enemy,command = "b"
+trigger1 = teammode = single || teammode = turns
+trigger1 = enemy,teammode = single || enemy,teammode = turns
+var(28) = 1
+[State 3000, Width]
+type = varadd
+triggerall = p2stateno = 59204 && enemy,command = "c"
+trigger1 = teammode = single || teammode = turns
+trigger1 = enemy,teammode = single || enemy,teammode = turns
+var(28) = 1
+[State 3000, Width]
+type = varadd
+triggerall = p2stateno = 59204 && enemy,command = "x"
+trigger1 = teammode = single || teammode = turns
+trigger1 = enemy,teammode = single || enemy,teammode = turns
+var(28) = 1
+[State 3000, Width]
+type = varadd
+triggerall = p2stateno = 59204 && enemy,command = "y"
+trigger1 = teammode = single || teammode = turns
+trigger1 = enemy,teammode = single || enemy,teammode = turns
+var(28) = 1
+[State 3000, Width]
+type = varadd
+triggerall = p2stateno = 59204 && enemy,command = "z"
+trigger1 = teammode = single || teammode = turns
+trigger1 = enemy,teammode = single || enemy,teammode = turns
+var(28) = 1
+[State 3000, Width]
+type = varset
+trigger1 = p2stateno != 59204
+var(28) = 0
+[State 3000, Width]
+type = varset
+trigger1 = p2stateno=[59200,59209]
+var(36) = 4
+[State 3000, Width]
+type = varadd
+trigger1 = (p2stateno!=[59200,59209])&&var(36)>0
+var(36) = -1
+
+[State 3000, Width]
+type = varset
+trigger1 = 1
+fvar(14) = fvar(10)
+[State 3000, Width]
+type = varset
+trigger1 = 1
+fvar(17) = 3.90625;1.00;
+[State 3000, Width]
+type = varset
+trigger1 = 1
+fvar(16) = 0.01*Const(data.attack)*ifelse(var(50)=1,ifelse(stateno<=299,0,1.0),1.0)*fvar(17)
+[State 3000, Width]
+type = varset
+trigger1 = 1
+fvar(15) = 15.625
+
+[State -2];同キャラタッグ区別用
+type = VarSet
+trigger1 = roundstate = 0
+trigger1 = numpartner
+trigger1 = partner,AuthorName = "Ohgaki"
+var(17) = (ifelse(p2dist x >= partner,p2dist x, 2, 1)-1)*10
+
+[State 230, 1]
+type = varset
+trigger1 = P2movetype != H
+trigger1 = P2stateno != 4100
+trigger1 = P2stateno != 722
+var(2) = 0
+[State 230, 1]
+type = varset
+trigger1 = P2movetype = A
+trigger2 = P2stateno = 100
+trigger3 = P2stateno = [59201,59204]
+fvar(11) = 1.3
+
+[State -2, Combo]
+type = VarSet
+trigger1 = Var(2) = 0
+fvar(10) = 1.000*fvar(11)
+ignorehitpause = 1
+[State -2, Combo]
+type = VarSet
+trigger1 = Var(50)=0&&Var(2) = 1
+trigger2 = Var(20)=0&&Var(50)=1&&(Var(2)=[1,3])
+trigger3 = Var(20)=1&&Var(2)=1
+fvar(10) = 0.895*fvar(11)
+ignorehitpause = 1
+[State -2, Combo]
+type = VarSet
+trigger1 = Var(50)=0&&(Var(2)=[2,3])
+trigger2 = Var(20)=0&&Var(50)=1&&(Var(2)=[4,6])
+trigger3 = Var(20)=1&&Var(2)=2
+fvar(10) = 0.795*fvar(11)
+ignorehitpause = 1
+[State -2, Combo]
+type = VarSet
+trigger1 = Var(50)=0&&Var(2)>=4
+trigger2 = Var(20)=0&&Var(50)=1&&(Var(2)=[7,9])
+trigger3 = Var(20)=1&&(Var(2)=[3,6])
+fvar(10) = 0.695*fvar(11)
+ignorehitpause = 1
+[State -2, Combo]
+type = VarSet
+trigger1 = Var(20)=0&&Var(50)=1&&Var(2)>=10
+trigger2 = Var(20)=1&&(Var(2)=[7,13])
+fvar(10) = 0.595*fvar(11)
+ignorehitpause = 1
+[State -2, Combo]
+type = VarSet
+trigger1 = Var(20)=1&&Var(2)>=14
+fvar(10) = 0.500*fvar(11)
+ignorehitpause = 1
+[State 230, 1]
+type = varset
+trigger1 = P2movetype != A
+trigger1 = P2stateno != 100
+trigger1 = P2stateno != [59201,59204]
+fvar(11) = 1.0
+
+[State 230, 1]
+type = nothitby
+trigger1 = var(12) = 0
+value = SCA,AA,AT,AP
+time = 1
+[State 230, 1]
+type = nothitby
+trigger1 = var(12) = 0
+value2 = ,AT
+time = 8
+[State 230, 1]
+type = varset
+triggerall = roundstate = 2
+trigger1 = ctrl = 1
+trigger2 = movetype = A
+var(12) = 1
+
+[State -3, Sound]
+type = playsnd
+triggerall = !IsHelper
+triggerall = movetype = H
+triggerall = Alive
+triggerall = stateno != 8000
+trigger1 = anim != 9020
+trigger1 = stateno != [120,155]
+trigger1 = var(10) - life > 0
+value = 22,0+random%8
+channel = 4
+[State -3, Sound]
+type = playsnd
+triggerall = !IsHelper
+triggerall = movetype = H
+triggerall = Alive
+triggerall = stateno != 8000
+trigger1 = stateno = 5100 || stateno = 5105
+trigger1 = time = 1
+value = 22,8
+channel = 4
+
+[State -3, Sound]
+type = playsnd
+trigger1 = var(23) = 0
+trigger1 = life = 0
+trigger1 = stateno != 5150
+trigger1 = matchover
+trigger1 = statetype=A
+value = 23,6
+channel = 4
+volume = 255
+
+[State -2, reset]
+type = VarSet
+trigger1 = life = 0
+trigger1 = matchover
+var(23) = 1
+ignorehitpause = 1
+
+[State -3, Sound]
+type = varset
+triggerall = movetype = H
+triggerall = Alive
+trigger1 = var(10) - life > 0
+var(8) = 1
+[State -2, reset]
+type = VarSet
+trigger1 = var(10) - life != 0
+var(10) = life
+ignorehitpause = 1
+
+[State -2]
+type = DisplayToClipboard
+trigger1 = 1
+text = "v2:%d,v31:%d,v33:%d,v56:%d,v59:%d"
+params = var(2),var(31),var(33),var(56),var(59);fvar(10),var(18),var(19),var(20),var(14)
+ignorehitpause = 1
+;表示を横に加える
+[State -2, DisplayToClipboard2]
+Type = AppendToClipboard
+trigger1 = 1
+text = " P2Dist X=%d,Y=%d,Front=%d,PosY=%d"
+params = floor(P2BodyDist X), ceil(P2BodyDist Y), floor(FrontEdgeBodyDist), ceil(Pos Y)
+ignorehitpause = 1
+;表示を下に加える
+[State -2, DisplayToClipboard3]
+type = AppendToClipboard
+trigger1 = numhelper(6001) > 0
+text = "\nVel X=%d/10,Y=%d/10,     \tP2Vel X=%d/10,Y=%d/10        F=%d";
+params = ceil(Vel X*10),floor(Vel Y*10),ceil(EnemyNear,Vel X*10),floor(EnemyNear,Vel Y*10),helper(6001),var(10)
+ignorehitpause = 1
+
+[State -2]
+type = Helper
+triggerall = !IsHelper
+trigger1 = numhelper(6000) = 0
+keyctrl = 1
+ID = 6000
+postype = p1
+pos = 0,0
+stateno = 6000
+pausemovetime = 123456789
+supermovetime = 123456789
+
+[State -2]
+type = Helper
+triggerall = !IsHelper
+trigger1 = numhelper(6001) = 0
+ID = 6001
+postype = p1
+pos = 0,0
+stateno = 6001
+pausemovetime = 123456789
+supermovetime = 123456789
+
+[State 230, 1]
+type = varset
+trigger1 = ((100*life)/lifeMax) <= 29
+var(16) = 1
+ignorehitpause = 1 
+pausemovetime = 123456789
+supermovetime = 123456789
+[State 230, 1]
+type = varset
+trigger1 = ((100*life)/lifeMax) > 29
+var(16) = 0
+ignorehitpause = 1 
+pausemovetime = 123456789
+supermovetime = 123456789
+
+[State -3]
+type = posadd
+trigger1 = animelem = 3
+trigger1 = anim = 5161
+x = -8
+
+[State -3]
+type = posadd
+trigger1 = animelem = 5
+trigger1 = anim = 5950
+trigger2 = animelem = 22
+trigger2 = anim = 17461
+trigger3 = animelem = 10
+trigger3 = anim = 15951
+x = 8
+[State -3]
+type = posadd
+trigger1 = animelem = 6
+trigger1 = anim = 5950
+trigger2 = animelem = 23
+trigger2 = anim = 17461
+trigger3 = animelem = 11
+trigger3 = anim = 15951
+x = 8
+[State -3]
+type = posadd
+trigger1 = animelem = 7
+trigger1 = anim = 5950
+trigger2 = animelem = 24
+trigger2 = anim = 17461
+trigger3 = animelem = 12
+trigger3 = anim = 15951
+x = 12
+[State -3]
+type = posadd
+trigger1 = animelem = 8
+trigger1 = anim = 5950
+trigger2 = animtime = 0
+trigger2 = anim = 17461
+trigger3 = animtime = 0
+trigger3 = anim = 15951
+x = 8
+
+[State 230, 1]
+type = stopsnd
+triggerall = !IsHelper
+trigger1 = movetype = H
+trigger2 = stateno != 100
+trigger2 = stateno != 320
+trigger2 = stateno != [500,503]
+trigger2 = stateno != 1002
+channel = 2
+
+[State 3000, Width]
+type = varset
+trigger1 = var(38) != 0
+var(16) = 1
+ignorehitpause = 1 
+
+[state -2];画面端の飛び越え対策
+type = width
+trigger1 = movetype != H
+edge = 5,0
+ignorehitpause = 1
+
+[State 200, 2]
+type = assertspecial
+trigger1 = numexplod(190)
+flag = nobardisplay
+
+;------------------------------------------------------------------
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Moriya"||enemy(0),name="moriya B"||enemy(0),name="Minakata Moriya"||enemy(0),name="Moriya Minakata"
+var(39) = 5
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Yuki"
+var(39) = 6
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Maede"
+var(39) = 3
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="kaede"||enemy(0),name="M_Kaede"||enemy(0),name="Kaede by Ribeiro"||enemy(0),name="Awakened Kaede"
+var(39) = 4
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Genbu Okina"||enemy(0),name="Genbu no Okina"||enemy(0),name="Tung Fu Rue"||enemy(0),name="Gen"
+trigger2 = enemy(0),name="Gouken"||enemy(0),name="Oro"||enemy(0),name="ROUWE"||enemy(0),name="Jyashinsai"
+trigger3 = enemy(0),name="kliff"||enemy(0),name="Yunfei"||enemy(0),name="Genkai_shihan"||enemy(0),name="chin"
+var(39) = 7
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Akari Ichijo"||enemy(0),name="NewAkari"||enemy(0),name="Ponta"||enemy(0),name="Miyako Arima"
+trigger2 = enemy(0),name="Arima_Miyako"||enemy(0),name="miyako"||enemy(0),name="Tsunade"||enemy(0),name="Nayu"
+trigger3 = enemy(0),name="Unyuho"||enemy(0),name="arina"||enemy(0),name="roomi"||enemy(0),name="Elm"||enemy(0),name="Phewtith"
+var(39) = 8
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Kanzaki Juzo"||enemy(0),name="Juzoh Kanzaki"||enemy(0),name="Johnny"||enemy(0),name="Donovan"
+trigger2 = enemy(0),name="Tam Tam"||enemy(0),name="TamTam Samurai Shodown"||enemy(0),name="tamtam"||enemy(0),name="SS_Tam Tam"
+trigger3 = enemy(0),name="ELIAS PATRICK v1.55 by Inverse"||enemy(0),name="ELIAS PATRICK"||enemy(0),name="ELIAS"
+var(39) = 9
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="washizuka"||enemy(0),name="Keiichiro Washizuka"||enemy(0),name="washizuka B"||enemy(0),name="sanada_ani"
+trigger2 = enemy(0),name="Sanada kojiroh"
+var(39) = 10
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Trigger"||enemy(0),name="Shikyoh"||enemy(0),name="Mukuro"||enemy(0),name="Juralmaou"
+trigger2 = enemy(0),name="yamazaki"||enemy(0),name="Ryuji Yamazaki"||enemy(0),name="Violent Yamazaki"||enemy(0),name="rasetsumaru"
+trigger3 = enemy(0),name="SS_Rasetsumaru"
+var(39) = 11
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Hyo Amano"||enemy(0),name="Amano"||enemy(0),name="Amano by Luchini"||enemy(0),name="cvssakura_ex"
+trigger2 = enemy(0),name="cvssakura_normal"||enemy(0),name="SAKURA-SvsC"||enemy(0),name="kofsakura"||enemy(0),name="Matou Sakura"
+var(39) = 12
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Lee Rekka"||enemy(0),name="Lee"
+var(39) = 13
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="cvsmukuro"||enemy(0),name="Guy"||enemy(0),name="cvsguy"||enemy(0),name="CvS2 Guy"
+trigger2 = enemy(0),name="chipp"||enemy(0),name="Chipp Zanuff"||enemy(0),name="Fuuma"||enemy(0),name="NBC_Fuuma"
+trigger3 = enemy(0),name="ngbc_fuuma"||enemy(0),name="Konoha"||enemy(0),name="Ziria"||enemy(0),name="Mai Shiranui"
+trigger4 = enemy(0),name="chipp"||enemy(0),name="Chipp Zanuff"||enemy(0),name="Fuuma"||enemy(0),name="NBC_Fuuma"
+trigger5 = enemy(0),name="Onsokumaru"||enemy(0),name="Fuuma Kotaro"||enemy(0),name="Galford"||enemy(0),name="SS_Galford EX"
+trigger6 = enemy(0),name="SS_Galford"
+var(39) = 14
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Shigen_Naoe"||enemy(0),name="Shigen Naoe"
+var(39) = 15
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Musashi Akatsuki"
+var(39) = 16
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&var(12)!=2
+trigger1 = enemy(0),name="Shinnosuke Kagami"||enemy(0),name="Kagami"
+var(39) = 17
+
+
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Moriya"||enemy(1),name="moriya B"||enemy(1),name="Minakata Moriya"||enemy(1),name="Moriya Minakata"
+var(39) = 5
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Yuki"
+var(39) = 6
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="kaede"||enemy(1),name="M_Kaede"||enemy(1),name="Kaede by Ribeiro"||enemy(1),name="Awakened Kaede"
+var(39) = 4
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Genbu Okina"||enemy(1),name="Genbu no Okina"||enemy(1),name="Tung Fu Rue"||enemy(1),name="Gen"
+trigger2 = enemy(1),name="Gouken"||enemy(1),name="Oro"||enemy(1),name="ROUWE"||enemy(1),name="Jyashinsai"
+trigger3 = enemy(1),name="kliff"||enemy(1),name="Yunfei"||enemy(1),name="Genkai_shihan"||enemy(1),name="chin"
+var(39) = 7
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Akari Ichijo"||enemy(1),name="NewAkari"||enemy(1),name="Ponta"||enemy(1),name="Miyako Arima"
+trigger2 = enemy(1),name="Arima_Miyako"||enemy(1),name="miyako"||enemy(1),name="Tsunade"||enemy(1),name="Nayu"
+trigger3 = enemy(1),name="Unyuho"||enemy(1),name="arina"||enemy(1),name="roomi"||enemy(1),name="Elm"||enemy(1),name="Phewtith"
+var(39) = 8
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Kanzaki Juzo"||enemy(1),name="Juzoh Kanzaki"||enemy(1),name="Johnny"||enemy(1),name="Donovan"
+trigger2 = enemy(1),name="Tam Tam"||enemy(1),name="TamTam Samurai Shodown"||enemy(1),name="tamtam"||enemy(1),name="SS_Tam Tam"
+trigger3 = enemy(1),name="ELIAS PATRICK v1.55 by Inverse"||enemy(1),name="ELIAS PATRICK"||enemy(1),name="ELIAS"
+var(39) = 9
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="washizuka"||enemy(1),name="Keiichiro Washizuka"||enemy(1),name="washizuka B"||enemy(1),name="sanada_ani"
+trigger2 = enemy(1),name="Sanada kojiroh"
+var(39) = 10
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Trigger"||enemy(1),name="Shikyoh"||enemy(1),name="Mukuro"||enemy(1),name="Juralmaou"
+trigger2 = enemy(1),name="yamazaki"||enemy(1),name="Ryuji Yamazaki"||enemy(1),name="Violent Yamazaki"||enemy(1),name="rasetsumaru"
+trigger3 = enemy(1),name="SS_Rasetsumaru"
+var(39) = 11
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Hyo Amano"||enemy(1),name="Amano"||enemy(1),name="Amano by Luchini"||enemy(1),name="cvssakura_ex"
+trigger2 = enemy(1),name="cvssakura_normal"||enemy(1),name="SAKURA-SvsC"||enemy(1),name="kofsakura"||enemy(1),name="Matou Sakura"
+var(39) = 12
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Lee Rekka"||enemy(1),name="Lee"
+var(39) = 13
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="cvsmukuro"||enemy(1),name="Guy"||enemy(1),name="cvsguy"||enemy(1),name="CvS2 Guy"
+trigger2 = enemy(1),name="chipp"||enemy(1),name="Chipp Zanuff"||enemy(1),name="Fuuma"||enemy(1),name="NBC_Fuuma"
+trigger3 = enemy(1),name="ngbc_fuuma"||enemy(1),name="Konoha"||enemy(1),name="Ziria"||enemy(1),name="Mai Shiranui"
+trigger4 = enemy(1),name="chipp"||enemy(1),name="Chipp Zanuff"||enemy(1),name="Fuuma"||enemy(1),name="NBC_Fuuma"
+trigger5 = enemy(1),name="Onsokumaru"||enemy(1),name="Fuuma Kotaro"||enemy(1),name="Galford"||enemy(1),name="SS_Galford EX"
+trigger6 = enemy(1),name="SS_Galford"
+var(39) = 14
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Shigen_Naoe"||enemy(1),name="Shigen Naoe"
+var(39) = 15
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Musashi Akatsuki"
+var(39) = 16
+[State 3000, Width]
+type = varset
+triggerall = roundstate=3&&numenemy=2&&var(39)=0&&var(12)!=2
+trigger1 = enemy(1),name="Shinnosuke Kagami"||enemy(1),name="Kagami"
+var(39) = 17
+
+[State 230, 1]
+type = varset
+trigger1 = roundstate = 3
+var(12) = 2
+
+;--------------------------------------------------------------------------
+;獣を焦がす(黒秋葉)　相手ステータス変化
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "tukemon&HAL" && enemy,name = "Akiha"
+trigger1 = enemy,var(56) = 1
+value = -8
+absolute = 1
+kill = 0
+
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "tukemon&HAL" && enemy,name = "Akiha"
+trigger1 = enemy,var(51)%10 = 2
+trigger1 = enemy,var(56) = 1
+value = -33
+
+;--------------------------------------------------------------------------
+;略奪/獣を焦がす/獣を窮める　相手用
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Akiha_Vermilion"
+trigger1 = enemy,var(47) = 1
+value = -7
+absolute = 1
+kill = 0
+
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Akiha_Vermilion"
+trigger1 = enemy,var(48) = 1 && enemy,numexplod(4005)
+value = -7
+absolute = 1
+kill = 0
+
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Akiha_Vermilion"
+trigger1 = enemy,var(47) = 1
+value = -26
+
+;--------------------------------------------------------------------------
+;パウダースノウ　相手用
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Len"
+trigger1 = enemy,var(47) = 1 || enemy,var(48) = 1
+value = -enemy,var(47)*4-enemy,var(48)*4
+absolute = 1
+kill = 0
+
+;--------------------------------------------------------------------------
+;じょうろ　相手用
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Hisui"
+trigger1 = enemy,var(47) = 1
+value = -10
+absolute = 1
+kill = 0
+
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Hisui"
+trigger1 = enemy,var(47) = 1
+value = -135
+
+;---------------------------------------------------------------------------
+;がんばりました。EX　相手用
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Hisui"
+trigger1 = enemy,var(48) = 1
+value = ifelse(gametime%2 = 0, -3, -4)
+absolute = 1
+kill = 0
+
+;--------------------------------------------------------------------------
+;ブラック・クラック　相手用
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Warachia"
+trigger1 = enemy,var(47) = 1
+value = -10
+absolute = 1
+kill = 0
+
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Warachia"
+trigger1 = enemy,var(47) = 2 || enemy,var(47) = 4
+value = -15
+absolute = 1
+kill = 0
+
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Warachia"
+trigger1 = enemy,var(47) = 3
+value = -30
+absolute = 1
+kill = 0
+
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Warachia"
+trigger1 = enemy,var(47) = 1
+value = 6
+
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Warachia"
+trigger1 = enemy,var(47) = 2 || enemy,var(47) = 3 || enemy,var(47) = 4
+value = 15
+
+;--------------------------------------------------------------------------
+;現代医学の犠牲者です。　相手用
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "⑨" && enemy,name = "Kohaku"
+trigger1 = enemy,var(47) = 1
+value = ifelse(gametime%2 = 0, -3, -4)
+absolute = 1
+kill = 0
+
+;--------------------------------------------------------------------------
+;毒効果（ドロウィンアルカナ)
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "Drowin arcana"
+triggerall = enemy,fvar(20) > 0
+trigger1 = power > 0
+value = -1
+
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "Drowin arcana"
+triggerall = enemy,fvar(20) > 0
+trigger1 = gametime % 7 = 0
+value = -1
+kill = 0
+
+[State -2]
+type = PalFX
+triggerall = numenemy
+triggerall = enemy,authorname = "Drowin arcana"
+trigger1 = enemy,fvar(20) > 0
+add = 100,0,110
+mul = 220,220,220
+time = 5
+ignorehitpause = 1
+
+;--------------------------------------------------------------------------
+;■西行寺幽々子　霊符及び寿命相手ステート
+[State -2]
+type       = LifeAdd
+triggerall = numenemy
+triggerall = enemy,authorname = "Souki" && enemy,name = "Yuyuko Saigyouji"
+trigger1   = enemy,var(3) = 1 || enemy,var(3) = 2
+trigger1   = gametime%6 = 0
+value      = ifelse(enemy,var(3) = 1, -2, -3)
+kill       = 0
+
+;--------------------------------------------------------------------------
+;うどんげ　毒煙幕用（シロトさん）
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = enemynear,authorname = "Shiroto"
+triggerall = enemynear,name = "Reisen Udongein Inaba"
+trigger1 = enemynear,var(40) != 0
+trigger1 = pos y = [-30,10]
+trigger1 = gametime%3 = 0
+value = -enemynear,var(40)
+kill = 0
+
+;--------------------------------------------------------------------------
+;■脱魂の儀 制御（authorname = "mikage_th105"）
+[State pos moving]
+type = AssertSpecial
+triggerall = (enemynear,name = "Komachi Onoduka")*(enemynear,authorname = "mikage_th105")*(teammode = single)
+trigger1 = (enemynear,stateno = 820)*(enemynear,anim = 823)*(enemynear,animelem = 6,13)
+trigger2 = (enemynear,stateno = 821)*(enemynear,anim = 823)*(enemynear,animelem = 6,43)
+flag = noautoturn
+
+;移動
+[State pos moving]
+type = PosAdd
+triggerall = (enemynear,name = "Komachi Onoduka")*(enemynear,authorname = "mikage_th105")*(teammode = single)
+trigger1 = (enemynear,stateno = 820)*(enemynear,anim = 823)*(enemynear,animelem = 6,13)
+trigger2 = (enemynear,stateno = 821)*(enemynear,anim = 823)*(enemynear,animelem = 6,43)
+x = -ceil(enemynear,fvar(24))*facing*enemynear,facing
+y = -ceil(enemynear,fvar(25))*(statetype != L)
+
+;Statetype != A + Statetype != L の場合強制落下Stateへ
+[State pos moving]
+type = ChangeState
+triggerall = (enemynear,name = "Komachi Onoduka")*(enemynear,authorname = "mikage_th105")*(teammode = single)
+triggerall = (statetype != A)*(pos y != 0)*(statetype != L)
+trigger1 = (enemynear,stateno = 820)*(enemynear,anim = 823)*(enemynear,animelem = 6,13)
+trigger2 = (enemynear,stateno = 821)*(enemynear,anim = 823)*(enemynear,animelem = 6,43)
+value = 50
+
+;--------------------------------------------------------------------------
+;■脱魂の儀 制御（authorname = "mikage_th"）
+
+;振り向き抑制
+[State pos moving]
+type = AssertSpecial
+triggerall = (enemynear,name = "Komachi Onoduka")*(enemynear,authorname = "mikage_th")*(teammode = single)
+trigger1 = (enemynear,stateno = 820)*(enemynear,anim = 823)*(enemynear,animelem = 6,13)
+trigger2 = (enemynear,stateno = 821)*(enemynear,anim = 823)*(enemynear,animelem = 6,43)
+flag = noautoturn
+
+;移動
+[State pos moving]
+type = PosAdd
+triggerall = (enemynear,name = "Komachi Onoduka")*(enemynear,authorname = "mikage_th")*(teammode = single)
+trigger1 = (enemynear,stateno = 820)*(enemynear,anim = 823)*(enemynear,animelem = 6,13)
+trigger2 = (enemynear,stateno = 821)*(enemynear,anim = 823)*(enemynear,animelem = 6,43)
+x = -ceil(enemynear,fvar(36))*facing*enemynear,facing
+y = -ceil(enemynear,fvar(37))*(statetype != L)
+
+;Statetype != A + Statetype != L の場合強制落下Stateへ
+[State pos moving]
+type = ChangeState
+triggerall = (enemynear,name = "Komachi Onoduka")*(enemynear,authorname = "mikage_th")*(teammode = single)
+triggerall = (statetype != A)*(pos y != 0)*(statetype != L)
+trigger1 = (enemynear,stateno = 820)*(enemynear,anim = 823)*(enemynear,animelem = 6,13)
+trigger2 = (enemynear,stateno = 821)*(enemynear,anim = 823)*(enemynear,animelem = 6,43)
+value = 50
+
+;--------------------------------------------------------------------------
+;■毒煙幕「瓦斯織物の玉」 制御（authorname = "mikage_th105"）
+[State LifeAdd]
+type = LifeAdd
+trigger1 = numenemy = 1
+trigger1 = pos y > -240
+trigger1 = (enemy(0),name = "Reisen Udongein Inaba")*(enemy(0),authorname = "mikage_th105")*(enemy(0),fvar(21))
+value = -floor(enemy(0),fvar(21))*2
+ignorehitpause = 1
+absolute = 1
+kill = 0
+
+[State LifeAdd]
+type = LifeAdd
+triggerall = numenemy = 2
+triggerall = pos y > -240
+trigger1 = (enemy(0),name = "Reisen Udongein Inaba")*(enemy(0),authorname = "mikage_th105")*(enemy(0),fvar(21))
+trigger2 = (enemy(1),name = "Reisen Udongein Inaba")*(enemy(1),authorname = "mikage_th105")*(enemy(1),fvar(21))
+value = -floor(enemy(0),fvar(21))*2-floor(enemy(1),fvar(21))*2
+ignorehitpause = 1
+absolute = 1
+kill = 0
+
+;--------------------------------------------------------------------------
+;■毒煙幕「瓦斯織物の玉」 制御（authorname = "mikage_th"）
+[State LifeAdd]
+type = LifeAdd
+trigger1 = numenemy = 1
+trigger1 = pos y > -240
+trigger1 = (enemy(0),name = "Reisen Udongein Inaba")*(enemy(0),authorname = "mikage_th")*(enemy(0),fvar(35))
+value = -floor(enemy(0),fvar(35))*2
+ignorehitpause = 1
+absolute = 1
+kill = 0
+
+[State LifeAdd]
+type = LifeAdd
+triggerall = numenemy = 2
+triggerall = pos y > -240
+trigger1 = (enemy(0),name = "Reisen Udongein Inaba")*(enemy(0),authorname = "mikage_th")*(enemy(0),fvar(35))
+trigger2 = (enemy(1),name = "Reisen Udongein Inaba")*(enemy(1),authorname = "mikage_th")*(enemy(1),fvar(35))
+value = -floor(enemy(0),fvar(35))*2-floor(enemy(1),fvar(35))*2
+ignorehitpause = 1
+absolute = 1
+kill = 0
+
+;--------------------------------------------------------------------------
+;■土着神の祟り＆ミシャグジさまの祟り 制御
+
+;土着神の祟り
+[State LifeAdd]
+type = LifeAdd
+trigger1 = numenemy
+trigger1 = (enemynear,name = "Suwako Moriya")*(enemynear,authorname = "mikage_th")*(teammode = single)
+trigger1 = floor((enemynear,var(42)%100)*0.1) = [0,1]
+trigger1 = (floor(enemynear,fvar(38)))%1000 > 0
+trigger1 = floor(enemynear,fvar(38)*0.001) = 2
+value = floor(enemynear,fvar(36)*(lifemax/10000.000000))
+ignorehitpause = 1
+absolute = 1
+kill = 0
+
+;ミシャグジさまの祟り
+[State LifeAdd]
+type = LifeAdd
+triggerall = numenemy
+triggerall = (enemynear,name = "Suwako Moriya")*(enemynear,authorname = "mikage_th")*(teammode = single)
+trigger1 = floor(enemynear,fvar(35)) = 1
+trigger1 = movetype = H
+trigger1 = stateno != [150,155]
+trigger2 = floor(enemynear,fvar(35)) = 2
+trigger2 = movetype = H
+trigger2 = stateno = [150,155]
+value = floor(enemynear,fvar(33))
+ignorehitpause = 1
+absolute = 1
+kill = 0
+
+;--------------------------------------------------------------------------
+;神尾観鈴　呪い効果付加
+[State -2, LifeAdd]
+type = LifeAdd
+triggerall = (enemy,teammode = simul) = 0
+triggerall = (teammode = simul) = 0
+triggerall = numenemy
+triggerall = enemy,authorname = "586"
+triggerall = enemy,name = "Misuzu Kamio"
+triggerall = enemy,fvar(11) > 0
+trigger1 = enemy,var(13) = 1
+trigger1 = gametime % 13 = 0
+trigger2 = enemy,var(13) = 2
+trigger2 = gametime % 11 = 0
+trigger3 = enemy,var(13) = 3
+trigger3 = gametime % 8  = 0
+trigger4 = enemy,var(13) = 4
+trigger4 = gametime % 6  = 0
+trigger5 = enemy,var(13) = 5
+trigger5 = gametime % 3  = 0
+value = -1
+kill = 0
+ignorehitpause = 1
+
+[State -2, PalFX]
+type = PalFX
+triggerall = (enemy,teammode = simul) = 0
+triggerall = (teammode = simul) = 0
+triggerall = numenemy
+triggerall = enemy,authorname = "586"
+triggerall = enemy,name = "Misuzu Kamio"
+trigger1 = enemy,fvar(11) > 0
+add = -50,150,150
+time = 1
+ignorehitpause = 1
+
+;--------------------------------------------------------------------------
+;イチコロ毒（SAIKEIユダ）
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+trigger1 = enemy,name = "JUDA"
+trigger1 = enemy,authorname = "SAIKEI"
+trigger1 = enemy,fvar(23) > 0
+trigger1 = floor(enemy,fvar(23))%4 = 0
+trigger1 = enemy,var(0) <= 0
+trigger1 = enemy,movetype != h || enemy,movetype = h && enemy,hitshakeover
+value = -1
+kill = 0
+
+[State -2]
+type = PalFX
+triggerall = numenemy
+triggerall = gametime%20 = 0
+trigger1 = enemy,name = "JUDA"
+trigger1 = enemy,authorname = "SAIKEI"
+trigger1 = enemy,fvar(23) > 0
+time = 8
+add = 255,0,0
+
+;-----------------------------------------------------------------------
+;アグリアスモーグリ恩恵
+[State -2]
+type = PalFX
+triggerall = numenemy
+triggerall = !ishelper
+trigger1 = roundstate = 2
+trigger1 = alive = 1
+trigger1 = numpartner = 1
+trigger1 = partner,authorname = "ouchi" && partner,name = "Agrias_Oaks"
+trigger1 = partner,var(25)%100 = 7
+trigger1 = partner,var(10) = 100
+time = 50
+add = 0,0,54
+mul = 256,256,256
+sinadd = 0,0,108,100
+
+[State -2]
+type = LifeAdd
+triggerall = numenemy
+triggerall = !ishelper
+trigger1 = roundstate = 2
+trigger1 = alive = 1
+trigger1 = numpartner = 1
+trigger1 = partner,authorname = "ouchi" && partner,name = "Agrias_Oaks"
+trigger1 = partner,var(25)%100 = 7
+trigger1 = partner,var(10) > 0
+value = 1
+ignorehitpause = 1
+
+;--------------------------------------------------------------------------
+;愛原奈都美「挑発」対応ステート
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemynear,name = "AIHARA NATSUMI" && enemynear,authorname = "YU-TOHARU"
+trigger1 = enemynear,stateno = 197 && enemynear,statetime = 70
+value = -45
+
+;--------------------------------------------------------------------------
+;アル･アジフ「挑発」対応ステート
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemynear,name = "AL AZIF" && enemynear,authorname = "YU-TOHARU"
+trigger1 = enemynear,stateno = 195 && enemynear,statetime = 30
+value = -45
+
+;--------------------------------------------------------------------------
+;マミヤ「挑発」対応ステート
+[State -2]
+type = PowerAdd
+triggerall = numenemy
+triggerall = enemynear,name = "MAMIYA" && enemynear,authorname = "YU-TOHARU"
+trigger1 = enemynear,stateno = 195 && enemynear,statetime = 30
+value = 1000

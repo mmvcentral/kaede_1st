@@ -7,7 +7,7 @@ name = "Kaede-1st"        ;Name of character
 displayname = "Kaede-1st" ;Name of character to display
 versiondate = 04,14,2002    ;Version date of character (MM-DD-YYYY)
 mugenversion = 04,14,2002   ;Version of M.U.G.E.N character works on
-author = "Elecbyte"         ;Character author name
+author = "Gachonpa"         ;Character author (?????)
 pal.defaults = 6,3,4,2      ;Default palettes in order of preference
 
 ; Files for the player
@@ -17,7 +17,7 @@ cns     = Kaede.cns   ;Constants
 st      = Kaede.cns   ;States
 st0      = Kaede.cns   ;States
 ;st1 = a1/kaedeA1_life.cns
-st2     = Kaede2.cns   ;超、潜在、昇華、乱舞、ゲージ
+st2     = Kaede2.cns   ;Super, Potential, Sublimation, Rengi, Gauge
 st3	= helper.cns
 st4	= KaedeAI.cns
 stcommon = Kaede-common1.cns ;Common states
